@@ -10,8 +10,8 @@
 
     <body>
 
-        <h1>Headings <br> with a <b>br</b>eak goes from <b>h</b>eader-<b>1</b></h2>
-        <h6>to <b>h</b>eader<b>6</b></h6>
+        <h1>Headings <br> with a <b>br</b>eak goes from <i>h</i>eader-<i>1</i></h2>
+        <h6>to <i>h</i>eader-<i>6</i></h6>
 
         <p>Also has <b>p</b>aragraphs<p>
         
@@ -48,11 +48,11 @@
             <caption>a table has a caption</caption>
             <thead>
                 <tr>
-                    <th><b>tT</b>able-<b>h</b>eaders</th>
+                    <th><i>T</i>able-<i>h</i>eaders</th>
                     <th>are</th>
                     <th>cells</th>
                     <th>for</th>
-                    <th><b>t</b>able<b>head</b></th>
+                    <th><i>t</i>able<i>head</i></th>
                     <th>as</th>
                     <th>header</th>
                 </tr>
@@ -123,7 +123,7 @@
             <p><b>Form</b>s are used for user inputs and uses the input tag</p>
 
             <label for="textLink">This is a label</label>
-            <input type="text" id="textLink" name="textVariab" list="dlVariab">
+            <input type="text" id="textLink" name="textVariab" list="dlVariab" value="Try typing here">
             <datalist id="dlVariab">
                 <option value="You can also add datalists in the form">
                 <option value="It has the options tag under it that act as pre-defined values">
@@ -137,7 +137,13 @@
             <label for="radioLink1">Option 1 for radio type input which lets the user select one out of many</label><br>
             <input type="radio" id="radioLink2" name="radioVariab">
             <label for="radioLink2">To switch, they must have the same name attribute values to be grouped together</label><br>
-            
+            <input type="radio" id="radioLink3" name="radioVariab">
+            <label for="radioLink3">The label must also be linked to its input type accordingly to work properly when clicked</label><br>
+            <input type="radio" id="radioLink4" name="radioVariab">
+            <label for="radioLink3">For example, this label is linked to the radio type above</label><br>
+            <input type="radio" id="radioLink5" name="radioVariab2">
+            <label for="radioLink5">And this radiotype is unlinked to the others</label><br>
+             
             <br>
             <input type="checkbox" id="cbLink1" name="cbVariab1">
             <label for="cbLink1">Option 1 for checkbox type input</label><br>
@@ -145,6 +151,8 @@
             <label for="cbLink2">They must have different name attributes</label><br>
             <input type="checkbox" id="cbLink3" name="cbVariab3">
             <label for="cbLink3">It lets you select zero or more from all options</label><br>
+            <input type="checkbox" id="cbLink4" name="cbVariab4">
+            <label for="cbLink3">Labels for checkboxes work similarly with radio types</label><br>
 
             <fieldset>
                 <legend>Fieldset act as container to group related data and this legend tag is used as its caption</legend>
@@ -157,7 +165,7 @@
                 </select>
             </fieldset>
             
-            <textarea name="areaVariab">This is a multi-line input field and text can be changed by the user</textarea>
+            <textarea name="areaVariab">(Resize me) This is a multi-line input field and text can be changed by the user</textarea><br>
 
             <input type="submit" value="Submit input type">
             <p>This works as a button that submits this form's data to the form-handler linked through the form's action tag</p>            
