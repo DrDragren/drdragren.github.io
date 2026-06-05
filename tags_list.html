@@ -2,8 +2,10 @@
 <html>
 
     <head>
-        <title>Samples</title>
-        <link rel="stylesheet" href="style.css">
+        <title id="Page-Title">Samples</title>
+        <link id="Favicons" rel="icon" type="image" href="/images/sample_icon.png">
+        <link id="Stylesheets" rel="stylesheet" href="style.css">
+        <!-- This is the only way to comment -->
     </head>
 
     <body>
@@ -12,12 +14,14 @@
         <h6>to h6</h6>
 
         <p>Also has paragraphs<p>
-        <ul>
+        
+            <ul>
             <li>and formatting elements too <br></li>
             <li><b> b and strong are for bold </b></li>
             <li><i> i and em are for italics</i></li>
             <li>mark to <mark> highlight </mark></li>
         </ul>
+        
         <ol>
             <li>like the previous unordered and this ordered list</li>
             <li>del to <del> strikethrough </del></li>
@@ -26,10 +30,132 @@
             <li>sup for <sup> superscript </sup></li>
         </ol>
 
-        <blockquote> blockquotes or q to quote </blockquote>
+        <p>blockquotes or q</p>
+        <blockquote>to quote</blockquote>
+
         <a href="url">a for links that target _self as default</a>
         <br>
         <a href="url" target="_blank">and _blank to open new tabs</a>
+
+        <p>Images need a src link and an alt value in case the image does not load</p>
+        <img src="images/sample.png" alt="sample image">
+        
+        <p>Favicons are those images that show up on the tab of the page and it uses the link tag</p>
+        <p>Similar to that, Stylesheets are the same</p>
+        <p>Page-Title uses title to show its value as the title to your page</p>
+
+        <table>
+            <caption>a table has a caption</caption>
+            <thead>
+                <tr>
+                    <th>th</th>
+                    <th>are</th>
+                    <th>cells</th>
+                    <th>for</th>
+                    <th>thead</th>
+                    <th>as</th>
+                    <th>header</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>use</td>
+                    <td>td</td>
+                    <td>as</td>
+                    <td>data</td>
+                    <td>cells</td>
+                    <td>under</td>
+                    <td>tbody</td>
+                </tr>
+                <tr>
+                    <td>you</td>
+                    <td>can</td>
+                    <td>have</td>
+                    <td>multiple</td>
+                    <td>rows</td>
+                    <td>using</td>
+                    <td>tr</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>td</td>
+                    <td>for</td>
+                    <td>tfoot</td>
+                    <td>cells</td>
+                    <td>as</td>
+                    <td>the</td>
+                    <td>footer</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <dl>
+            <dt>dl is for a description list</dt>
+            <dd>inside, it has dt and dd tags</dd>
+            <dd>they describe the term and the description of the list</dd>
+            <dd>dd also automatically indents its line</dd>
+        </dl>
+
+        <div>
+            <p>div and span are block-level and inline containers, respectively</p>
+            <p>div starts on a new line and occupies all avaible width <span>while span does not and only occupies the necessary width</span></p>
+        </div>
+
+        <button>Buttons can run JavaScript and has their own attributes</button>
+
+        <form action="test.php">
+            <!--
+            target="_blank" [default] target="_self"
+                specifies where to open the response after submitting
+            [default] autocomplete="on" autocomplete="off"
+                autocompletes values
+            novalidate
+                does not validate if the input format is correct
+            enctype="text/plain" [default] enctype="application/x-www-form-urlencoded" enctype="multipart/form-data"
+                determines how to encode the data submitted: without, with (space - +,special characters - ascii hex), for file upload
+            [default] method="get" method="post" method="dialog"
+                specifies how to send the data:
+                    appends in the url, limited to under 3000 characters, for non-secure data
+                    appends in the body of the request (hidden), no size limit, for sensitive data
+                    if the <form> is under <dialog>, it closes the dialog, starts a submit event but does not clear the form nor submit the data
+            -->
+            <p>Forms are used for user inputs and uses the input tag</p>
+
+            <label for="textLink">This is a label that that has a for attribute to link to an input type using its id attribute</label>
+            <input type="text" id="textLink" name="textVariab">
+            <p>The above is a text input type and it sends its data attached to its name attribute</p>
+
+            <input type="radio" id="radioLink1" name="radioVariab">
+            <label for="radioLink1">Option 1 for radio type input which lets the user select one out of many</label>
+            <input type="radio" id="radioLink2" name="radioVariab">
+            <label for="radioLink2">To switch, they must have the same name attribute values to be grouped together</label>
+
+            <input type="checkbox" id="cbLink1" name="cbVariab1">
+            <label for="cbLink1">Option 1 for checkbox type input</label>
+            <input type="checkbox" id="cbLink2" name="cbVariab2">
+            <label for="cbLink2">They must have different attributes</label>
+            <input type="checkbox" id="cbLink3" name="cbVariab3">
+            <label for="cbLink3">It lets you select zero or more from all options</label>
+
+            <input type="submit" value="Submit input type">
+            <p>This is a button that submits this form's data to the form-handler linked through the action tag</p>            
+
+            <label for="selectLink">Select is a drop-down option</label>
+            <select id="selectLink" name="selectVariab">
+                <option value="value1">Has attribute value</option>
+                <option value="value2">This is the value sent to the form</option>
+                <option value="value3">attached to the name attribute of select</option>
+                <option value="value4" selected>selected attribute to define a pre-selected option</option>
+            </select>
+
+            <textarea name="areaVariab">This is a multi-line input field</textarea>
+            
+            <p>Buttons also have two more types aside from the default button</p>
+            <button type="submit">Acts similar to submit type input</button>
+            <button type="reset">Resets all values in the form</button>
+
+        </form>
     </body>
 
 </html>
