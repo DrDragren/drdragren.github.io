@@ -1,0 +1,52 @@
+/* must be modular and scaling (percentage based) */
+
+/* HEADER */
+h1 {
+    emphasis: bold;
+    type: all-caps;
+    size: giant;
+    alignment: centered;
+}
+
+/* TITLE */
+h2 {
+    emphasis: bold/nothing;
+    size: huge;
+}
+
+/* SUBTITLE */
+h3 {
+    size: large;
+}
+
+/* TEXT */
+p {
+    size: average;
+}
+
+/* SUBTEXT */
+p {
+    size: small/tiny;
+    emphasis: italic;
+}
+
+/* TABLES */
+table {
+    -
+}
+
+/* NUMBERS AND BULLETS */
+ol {
+    -
+}
+ul {
+    -
+}
+
+/* BUTTONS */
+button {
+    -
+}
+
+/* designs per sizes [PC, Tablet, Phone] */
+/* scaling animations */

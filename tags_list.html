@@ -10,20 +10,20 @@
 
     <body>
 
-        <h1>Headings <br> with a break goes from h1</h2>
-        <h6>to h6</h6>
+        <h1>Headings <br> with a <b>br</b>eak goes from <b>h</b>eader-<b>1</b></h2>
+        <h6>to <b>h</b>eader<b>6</b></h6>
 
-        <p>Also has paragraphs<p>
+        <p>Also has <b>p</b>aragraphs<p>
         
             <ul>
             <li>and formatting elements too <br></li>
-            <li><b> b and strong are for bold </b></li>
-            <li><i> i and em are for italics</i></li>
+            <li>b and strong are for <b> bold </b></li>
+            <li>i and em are for <i> italics</i></li>
             <li>mark to <mark> highlight </mark></li>
         </ul>
         
         <ol>
-            <li>like the previous unordered and this ordered list</li>
+            <li>like the previous <b>u</b>nordered-<b>l</b>ist and this <b>o</b>rdered-<b>l</b>ist</li>
             <li>del to <del> strikethrough </del></li>
             <li>and ins for <ins> underscore </ins></li>
             <li>sub for <sub> subscript </sub></li>
@@ -37,7 +37,7 @@
         <br>
         <a href="url" target="_blank">and _blank to open new tabs</a>
 
-        <p>Images need a src link and an alt value in case the image does not load</p>
+        <p><b>Im</b>a<b>g</b>es need a src link for the file and an alt value in case the image does not load</p>
         <img src="images/sample.png" alt="sample image">
         
         <p>Favicons are those images that show up on the tab of the page and it uses the link tag</p>
@@ -48,40 +48,40 @@
             <caption>a table has a caption</caption>
             <thead>
                 <tr>
-                    <th>th</th>
+                    <th><b>tT</b>able-<b>h</b>eaders</th>
                     <th>are</th>
                     <th>cells</th>
                     <th>for</th>
-                    <th>thead</th>
+                    <th><b>t</b>able<b>head</b></th>
                     <th>as</th>
                     <th>header</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>use</td>
-                    <td>td</td>
+                    <td>Use</td>
+                    <td><b>t</b>able-<b>d</b>ata</td>
                     <td>as</td>
                     <td>data</td>
                     <td>cells</td>
                     <td>under</td>
-                    <td>tbody</td>
+                    <td><b>t</b>able-<b>body</b></td>
                 </tr>
                 <tr>
-                    <td>you</td>
+                    <td>You</td>
                     <td>can</td>
                     <td>have</td>
                     <td>multiple</td>
                     <td>rows</td>
                     <td>using</td>
-                    <td>tr</td>
+                    <td><b>t</b>able-<b>r</b>ow</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td>td</td>
+                    <td><b>T</b>able-<b>d</b>ata</td>
                     <td>for</td>
-                    <td>tfoot</td>
+                    <td><b>t</b>able-<b>foot</b></td>
                     <td>cells</td>
                     <td>as</td>
                     <td>the</td>
@@ -92,9 +92,9 @@
 
         <dl>
             <dt>dl is for a description list</dt>
-            <dd>inside, it has dt and dd tags</dd>
-            <dd>they describe the term and the description of the list</dd>
-            <dd>dd also automatically indents its line</dd>
+            <dd>- inside, it has dt and dd tags</dd>
+            <dd>- they describe the term and the description of the list</dd>
+            <dd>- dd also automatically indents its line</dd>
         </dl>
 
         <div>
@@ -102,7 +102,7 @@
             <p>div starts on a new line and occupies all avaible width <span>while span does not and only occupies the necessary width</span></p>
         </div>
 
-        <button>Buttons can run JavaScript and has their own attributes</button>
+        <button><b>Button</b>s can run JavaScript and has their own attributes</button>
 
         <form action="test.php">
             <!--
@@ -120,40 +120,54 @@
                     appends in the body of the request (hidden), no size limit, for sensitive data
                     if the <form> is under <dialog>, it closes the dialog, starts a submit event but does not clear the form nor submit the data
             -->
-            <p>Forms are used for user inputs and uses the input tag</p>
+            <p><b>Form</b>s are used for user inputs and uses the input tag</p>
 
-            <label for="textLink">This is a label that that has a for attribute to link to an input type using its id attribute</label>
-            <input type="text" id="textLink" name="textVariab">
-            <p>The above is a text input type and it sends its data attached to its name attribute</p>
+            <label for="textLink">This is a label</label>
+            <input type="text" id="textLink" name="textVariab" list="dlVariab">
+            <datalist id="dlVariab">
+                <option value="You can also add datalists in the form">
+                <option value="It has the options tag under it that act as pre-defined values">
+                <option value="It has an id attribute that is the same as the list attribute of an input">
+                <option value="Connected inputs show these options as value that can be used and auto-filled">
+            </datalist>
+            <p>The above text is a label that has a for attribute that links to an input tag through its id attribute,<br>
+                while the box above is a text input type and it sends its data attached to its name attribute</p>
 
             <input type="radio" id="radioLink1" name="radioVariab">
-            <label for="radioLink1">Option 1 for radio type input which lets the user select one out of many</label>
+            <label for="radioLink1">Option 1 for radio type input which lets the user select one out of many</label><br>
             <input type="radio" id="radioLink2" name="radioVariab">
-            <label for="radioLink2">To switch, they must have the same name attribute values to be grouped together</label>
-
+            <label for="radioLink2">To switch, they must have the same name attribute values to be grouped together</label><br>
+            
+            <br>
             <input type="checkbox" id="cbLink1" name="cbVariab1">
-            <label for="cbLink1">Option 1 for checkbox type input</label>
+            <label for="cbLink1">Option 1 for checkbox type input</label><br>
             <input type="checkbox" id="cbLink2" name="cbVariab2">
-            <label for="cbLink2">They must have different attributes</label>
+            <label for="cbLink2">They must have different name attributes</label><br>
             <input type="checkbox" id="cbLink3" name="cbVariab3">
-            <label for="cbLink3">It lets you select zero or more from all options</label>
+            <label for="cbLink3">It lets you select zero or more from all options</label><br>
+
+            <fieldset>
+                <legend>Fieldset act as container to group related data and this legend tag is used as its caption</legend>
+                <label for="selectLink">Select is a drop-down option</label>
+                <select id="selectLink" name="selectVariab">
+                    <option value="value1">Select has the attribute value</option>
+                    <option value="value2">This is the value sent to the form</option>
+                    <option value="value3">attached to the name attribute of the select tag</option>
+                    <option value="value4" selected>The selected attribute is used to define a pre-selected option</option>
+                </select>
+            </fieldset>
+            
+            <textarea name="areaVariab">This is a multi-line input field and text can be changed by the user</textarea>
 
             <input type="submit" value="Submit input type">
-            <p>This is a button that submits this form's data to the form-handler linked through the action tag</p>            
+            <p>This works as a button that submits this form's data to the form-handler linked through the form's action tag</p>            
 
-            <label for="selectLink">Select is a drop-down option</label>
-            <select id="selectLink" name="selectVariab">
-                <option value="value1">Has attribute value</option>
-                <option value="value2">This is the value sent to the form</option>
-                <option value="value3">attached to the name attribute of select</option>
-                <option value="value4" selected>selected attribute to define a pre-selected option</option>
-            </select>
-
-            <textarea name="areaVariab">This is a multi-line input field</textarea>
-            
             <p>Buttons also have two more types aside from the default button</p>
             <button type="submit">Acts similar to submit type input</button>
             <button type="reset">Resets all values in the form</button>
+
+            <!-- Stopped at buttons going to iframes and output under form elements going to input types -->
+            <!-- https://www.w3schools.com/html/html_form_elements.asp -->
 
         </form>
     </body>
