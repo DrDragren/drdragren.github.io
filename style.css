@@ -1,51 +1,71 @@
 /* must be modular and scaling (percentage based) */
 
+@font-face {
+    font-family: 'Courier New';
+    src: url(styles/cour.ttf);
+}
+
+@font-palette-values --brightSide {
+    font-family: 'Courier New', Courier, monospace;
+    override-colors: black;
+}
+
+@font-palette-values --darkSide {
+    font-family: 'Courier New', Courier, monospace;
+    override-colors: white;
+}
+
+* {
+    font-palette: --brightSide;
+}
+
 /* HEADER */
 h1 {
-    emphasis: bold;
-    type: all-caps;
-    size: giant;
-    alignment: centered;
+    text-transform: uppercase;
+    font-size: 5em;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* TITLE */
 h2 {
-    emphasis: bold/nothing;
-    size: huge;
+    font-size: 3em;
+    font-weight: bold;
 }
 
 /* SUBTITLE */
 h3 {
-    size: large;
+    font-size: 1.5em;
 }
 
 /* TEXT */
 p {
-    size: average;
+    font-size: 0.75em;
 }
 
 /* SUBTEXT */
-p {
-    size: small/tiny;
-    emphasis: italic;
+p.sub {
+    font-size: 0.375em;
+    font-style: italic;
+    font-variant: small-caps;
 }
 
 /* TABLES */
 table {
-    -
+    text-align: justify;
 }
 
 /* NUMBERS AND BULLETS */
 ol {
-    -
+    text-align: justify;
 }
 ul {
-    -
+    text-align: justify;
 }
 
 /* BUTTONS */
 button {
-    -
+    text-align: justify;
 }
 
 /* designs per sizes [PC, Tablet, Phone] */

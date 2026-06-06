@@ -104,6 +104,13 @@
 
         <button><b>Button</b>s can run JavaScript and has their own attributes</button>
 
+        <iframe src="index.html" title="Main web page" name="sampleFrame"></iframe>
+        <p>iFrames open up documents or links inside the webpage and uses the title attribute similar to img's alt attribute</p> 
+        <p>It can also be targeted by a link using its name attribute</p>
+        <a href="about-me.html" target="sampleFrame">Opens in the iFrame</a>
+
+        
+
         <form action="test.php">
             <!--
             target="_blank" [default] target="_self"
@@ -170,7 +177,7 @@
             <input type="submit" value="Submit input type">
             <p>This works as a button that submits this form's data to the form-handler linked through the form's action tag</p>            
 
-            <p>Buttons also have two more types aside from the default button</p>
+            <p>Buttons also have two more additional types aside from the default button</p>
             <button type="submit">Acts similar to submit type input</button>
             <button type="reset">Resets all values in the form</button>
 
