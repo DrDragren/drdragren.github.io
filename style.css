@@ -1,22 +1,19 @@
 /* must be modular and scaling (percentage based) */
 
 @font-face {
-    font-family: 'Courier New';
+    font-family: 'Courier New Dark';
     src: url(styles/cour.ttf);
+    color: white;
 }
 
-@font-palette-values --brightSide {
-    font-family: 'Courier New', Courier, monospace;
-    override-colors: black;
-}
-
-@font-palette-values --darkSide {
-    font-family: 'Courier New', Courier, monospace;
-    override-colors: white;
+@font-face {
+    font-family: 'Courier New Bright';
+    src: url(styles/cour.ttf);
+    color: black;
 }
 
 * {
-    font-palette: --brightSide;
+    font-family: 'Courier New Bright', Courier, monospace;
 }
 
 /* HEADER */
@@ -40,12 +37,12 @@ h3 {
 
 /* TEXT */
 p {
-    font-size: 0.75em;
+    font-size: 1em;
 }
 
 /* SUBTEXT */
 p.sub {
-    font-size: 0.375em;
+    font-size: 0.5em;
     font-style: italic;
     font-variant: small-caps;
 }
