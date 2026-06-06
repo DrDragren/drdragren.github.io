@@ -32,17 +32,17 @@ h2 {
 
 /* SUBTITLE */
 h3 {
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
 /* TEXT */
 p {
-    font-size: 1em;
+    font-size: 1.5em;
 }
 
 /* SUBTEXT */
 p.sub {
-    font-size: 0.5em;
+    font-size: 1em;
     font-style: italic;
     font-variant: small-caps;
 }
