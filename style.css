@@ -1,5 +1,4 @@
-/* must be modular and scaling (percentage based) */
-
+/* THEMES */
 @font-face {
     color: white;
     font-family: 'Courier New Dark';
@@ -12,82 +11,303 @@
     src: url(styles/cour.ttf);
 }
 
+/* CURRENT THEME */
 * {
     font-family: 'Courier New Bright', Courier, monospace;
+    text-decoration: none;
+    color: black;
 }
 
-/* HEADER */
-h1 {
+/* 
+
+    SELECTOR LISTS
+class       |   element
+.article    |   article
+.button     |   button
+.container  |   div
+.fixed      |   article
+.footer     |   div
+.header     |   h1
+.lcontent   |   section
+.link       |   a
+.main       |   body
+.menu       |   div
+.navigation |   div
+.ordered    |   ol
+.photo      |   img
+.rcontent   |   section
+.section    |   section
+.slider     |   article
+.sub        |   p
+.subtitle   |   h3
+.table      |   table
+.text       |   p
+.title      |   h2
+.twocol     |   article
+.unordered  |   ul
+
+id          |   element
+#brand      |   a
+#menu       |   button
+
+*/
+
+/* [GOAL] Text sizes get smaller */
+/* ================================================================= TEXT ================================================================= */
+/*                                                                  HEADER                                                                  */
+/*                                                                  for h1                                                                  */
+.header {
     font-size: 5rem;
     font-weight: bold;
+    margin: 0;
     text-align: center;
     text-transform: uppercase;
     width: 100%;
 }
-
-/* TITLE */
-h2 {
+/*                                                                  TITLE                                                                   */
+/*                                                                  for h2                                                                  */
+.title {
     font-size: 3rem;
     font-weight: bold;
+    margin: 0;
 }
-
-/* SUBTITLE */
-h3 {
+/*                                                                 SUBTITLE                                                                 */
+/*                                                                  for h3                                                                  */
+.subtitle {
     font-size: 2rem;
+    margin: 0;
 }
-
-/* TEXT */
-p {
+/*                                                                   TEXT                                                                   */
+/*                                                                  for p                                                                   */
+.text {
     font-size: 1.5rem;
+    margin: 0;
     text-align: justify;
-}
+/*                                                                  SUBTEXT                                                                 */
+/*                                                                 for p.sub                                                                */
 
-/* SUBTEXT */
-p.sub {
-    font-size: 1em;
-    font-style: italic;
-    font-variant: small-caps;
-    text-align: justify;
-    text-transform: lowercase;
+    &.sub {
+        font-size: 1rem;
+        font-style: italic;
+        font-variant: small-caps;
+        text-align: justify;
+        text-transform: lowercase;
+    }
 }
-
-/* IMAGES */
-img {
-    max-width: 100%;
+/*                                                                  LINKS                                                                   */
+/*                                                                  for a                                                                   */
+.link:hover {
+    color: tomato;
+}
+/* ================================================================ OTHERS ================================================================ */
+/*                                                                  IMAGES                                                                  */
+/*                                                                  for img                                                                 */
+.photo {
     height: auto;
+    max-width: 100%;
 }
+/*                                                                  TABLES                                                                  */
+/*                                                                 for table                                                                */
+.table {
+    text-align: justify;
+}
+/*                                                            NUMBERS AND BULLETS                                                           */
+/*                                                               for ol and ul                                                              */
+.ordered {
+    text-align: justify;
+}
+.unordered {
+    text-align: justify;
+}
+/*                                                                  BUTTONS                                                                 */
+/*                                                                for button                                                                */
+.button {
+    text-align: justify;
+    border: none;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+/* ============================================================== CONTAINERS ============================================================== */
+/*                                                              PAGE CONTAINER                                                              */
+/*                                                    for body, div.menu, article, footer                                                   */
+.main {
+    display: grid;
+    margin: 0;
+    grid-template-areas:
+        "header"
+        "article"
+        "footer";
+    
+    & > .menu {
+        border: 1px solid black;
+        padding: 1rem;
+        display: grid;
+        grid-area: "header";
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        align-items: center;
+        justify-items: center;
+    }
 
-/* CONTAINERS */
-article {
-    width: 100%;
-    border: 1px solid black;
+    & .article {
+        display: grid;
+        grid-area: "article";
+    }
+
+    & > .footer {
+        grid-area: "footer";
+    }
 }
-div {
-    border: 1px solid red;
+/*                                                                 MENU BAR                                                                 */
+/*                                           for a#brand, div.navigation, button#menu, button > svg                                         */
+.menu > a#brand {
+    grid-area: span 1 / span 2;
+}
+.menu > .navigation {
     display: flex;
-}
-section {
-    border: 1px solid blue;
+    grid-area: span 1 / span 5;
+    justify-content: space-between;
     width: 100%;
 }
+.menu > #menu {
+    grid-area: span 1 / span 1;
+    justify-self: end;
 
-/* TABLES */
-table {
-    text-align: justify;
+    & > svg {
+        max-width: 1rem;
+    }
 }
+/*                                                              NAVIGATION BAR                                                              */
+/*                                                            for .navigation > a                                                           */
+.navigation > .link {
+    padding: 0% 0% 0% 6%;
+    border-left: 1px solid black;
+    &:first-child {
+        border-left: none;
+    }
+}
+/*                                                        TWO COLUMN ARTICLE CONTENTS                                                       */
+/*                                                          for article, h1, section                                                        */
+.twocol {
+    grid-template-areas:
+        "title title"
+        "lcontent rcontent";
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    width: 100%;
 
-/* NUMBERS AND BULLETS */
-ol {
-    text-align: justify;
-}
-ul {
-    text-align: justify;
-}
+    & > .header {
+        grid-area: title;
+    }
 
-/* BUTTONS */
-button {
-    text-align: justify;
-}
+    & > .lcontent {
+        grid-area: lcontent;
+    }
 
+    & > .rcontent {
+        grid-area: rcontent;
+    }
+}
+/*                                                          SLIDER ARTICLE CONTENTS                                                         */
+/*                                                           for article, section                                                           */
+.fixed {
+    grid-template-areas: "buttonl content buttonr";
+}
+.slider {
+    overflow-x: scroll;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    & > .section {
+        scroll-snap-align: start;
+    }
+
+    &::scroll-button(right) {
+        grid-area: buttonr;
+        content: ">";
+    }
+    &::scroll-button(left) {
+        grid-area: buttonl;
+        content: "<";
+    }
+    &::scroll-button(right):disabled {
+        cursor: default;
+    }
+    &::scroll-button(right), &::scroll-button(left) {
+        background: 0%;
+        font-size: 10rem;
+        color: black;
+        cursor: pointer;
+    }
+}
+/*                                                              SUB CONTAINERS                                                              */
+/*                                                             for div, section                                                             */
+.container {
+    gap: 1rem;
+}
+.section {
+    gap: 1rem;
+    padding: 3%;
+}
+/* =============================================================== REACTIVE =============================================================== */
 /* designs per sizes [PC, Tablet, Phone] */
 /* scaling animations */
+
+/* PHONE */
+/*  Extra small devices (portrait phones, less than 576px)
+    No media query since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 0px) and (max-width: 767px) {
+    
+/* ============================================================== CONTAINERS ============================================================== */
+/*                                                              PAGE CONTAINER                                                              */
+/*                                                               for div.menu                                                               */
+    .main > .menu {
+        display: grid;
+        grid-area: "header";
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+/*                                                        TWO COLUMN ARTICLE CONTENTS                                                       */
+/*                                                                for article                                                               */
+    .twocol {
+        display: grid;
+        grid-area: "article";
+        grid-template-areas:
+            "title"
+            "lcontent"
+            "rcontent";
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+/*                                                                 MENU BAR                                                                 */
+/*                                                            for div.navigation                                                            */
+    .menu > .navigation {
+        display: none;
+    }
+/*                                                          SLIDER ARTICLE CONTENTS                                                         */
+/*                                                           for article, section                                                           */
+    .slider::scroll-button(right), .slider::scroll-button(left) {
+        background: 0%;
+        font-size: 5rem;
+        color: black;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    
+}
