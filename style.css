@@ -1,21 +1,51 @@
-/* THEMES */
+/* ================================================================ THEMES ================================================================ */
+/*                                                                  BRIGHT                                                                  */
+:root {
+    /* background colors, 60% */
+    --primary: rgba(255, 255, 255, 1);
+    /* font color, 30% */
+    --secondary: rgba(0, 0, 0, 1);
+    /* shades and borders */
+    --shade-light: rgba(118, 123, 145, 1);
+    --shade-dark: rgba(30, 30, 36, 1);
+    /* gradient background color */
+    --shade-one: rgba(178, 178, 178, 0.1);
+    /* clickable or highlights, 10% */
+    --accent: rgba(254, 101, 79, 1);
+}
+/*                                                                   DARK                                                                   */
+:root:has(#theme:checked) {
+    /* background colors, 60% */
+    --primary: rgba(0, 0, 0, 1);
+    /* font color, 30% */
+    --secondary: rgba(255, 255, 255, 1);
+    /* shades and borders */
+    --shade-light: rgba(30, 30, 36, 1);
+    --shade-dark: rgba(118, 123, 145, 1);
+    /* gradient background color */
+    --shade-one: rgba(178, 178, 178, 0.05);
+    /* clickable or highlights, 10% */
+    --accent: rgba(255, 64, 35, 1);
+}
+/*                                                                   FONT                                                                   */
 @font-face {
-    color: white;
-    font-family: 'Courier New Dark';
+    color: var(--secondary);
+    font-family: 'Courier New';
     src: url(styles/cour.ttf);
 }
 
-@font-face {
-    color: black;
-    font-family: 'Courier New Bright';
-    src: url(styles/cour.ttf);
-}
-
-/* CURRENT THEME */
 * {
-    font-family: 'Courier New Bright', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     text-decoration: none;
-    color: black;
+    color: var(--secondary);
+}
+/*                                                                BACKGROUND                                                                */
+.main {
+    background-color: var(--primary);
+    opacity: 0.8;
+    background-image: conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg);
+    background-position: 0 0, 2.5rem 4.25rem, 0 0, 2.5rem 4.25rem, 2.5rem 0, 0 4.25rem;
+    background-size: 5rem 8.5rem;
 }
 
 /* 
@@ -24,10 +54,12 @@
 class       |   element
 .article    |   article
 .button     |   button
+.checkbox   |   input checkbox
 .container  |   div
 .fixed      |   article
 .footer     |   div
 .header     |   h1
+.label      |   label
 .lcontent   |   section
 .link       |   a
 .main       |   body
@@ -97,7 +129,7 @@ id          |   element
 /*                                                                  LINKS                                                                   */
 /*                                                                  for a                                                                   */
 .link:hover {
-    color: tomato;
+    color: var(--accent);
 }
 /* ================================================================ OTHERS ================================================================ */
 /*                                                                  IMAGES                                                                  */
@@ -124,9 +156,33 @@ id          |   element
 .button {
     text-align: justify;
     border: none;
-    background-color: white;
-    color: black;
+    background-color: transparent;
     cursor: pointer;
+}
+/*                                                         for input checkbox, label                                                        */
+.checkbox {
+    display: none;
+
+    & + .label {
+        background-image: url(images/bright.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 1.5rem;
+        aspect-ratio: 1 / 1;
+
+        &:hover {
+            filter: invert(52%) sepia(34%) saturate(4952%) hue-rotate(333deg) brightness(105%) contrast(101%);
+        }
+    }
+
+    &:checked + .label {
+        background-image: url(images/dark.svg);
+        filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);
+
+        &:hover {
+            filter: invert(52%) sepia(34%) saturate(4952%) hue-rotate(333deg) brightness(105%) contrast(101%);
+        }
+    }
 }
 /* ============================================================== CONTAINERS ============================================================== */
 /*                                                              PAGE CONTAINER                                                              */
@@ -140,13 +196,16 @@ id          |   element
         "footer";
     
     & > .menu {
-        border: 1px solid black;
+        border: 1px solid var(--shade-dark);
         padding: 1rem;
         display: grid;
         grid-area: "header";
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         align-items: center;
         justify-items: center;
+        position: sticky;
+        top: 0;
+        background-color: var(--primary);
     }
 
     & .article {
@@ -159,7 +218,7 @@ id          |   element
     }
 }
 /*                                                                 MENU BAR                                                                 */
-/*                                           for a#brand, div.navigation, button#menu, button > svg                                         */
+/*                                     for a#brand, div.navigation, input checkbox + label, button#menu                                     */
 .menu > a#brand {
     grid-area: span 1 / span 2;
 }
@@ -169,19 +228,18 @@ id          |   element
     justify-content: space-between;
     width: 100%;
 }
-.menu > #menu {
+.checkbox + .label {
     grid-area: span 1 / span 1;
     justify-self: end;
-
-    & > svg {
-        max-width: 1rem;
-    }
 }
+.menu > #menu {
+        display: none;
+    }
 /*                                                              NAVIGATION BAR                                                              */
 /*                                                            for .navigation > a                                                           */
 .navigation > .link {
     padding: 0% 0% 0% 6%;
-    border-left: 1px solid black;
+    border-left: 1px solid var(--shade-dark);
     &:first-child {
         border-left: none;
     }
@@ -232,18 +290,25 @@ id          |   element
         grid-area: buttonl;
         content: "<";
     }
-    &::scroll-button(right):disabled {
-        cursor: default;
-    }
     &::scroll-button(right), &::scroll-button(left) {
         background: 0%;
         font-size: 10rem;
-        color: black;
+        color: var(--secondary);
         cursor: pointer;
+        border: none;
+    }
+    &::scroll-button(right):disabled, &::scroll-button(left):disabled {
+        cursor: default;
+        color: var(--shade-light);
+    }
+    &::scroll-button(right):active, &::scroll-button(left):active {
+        cursor: default;
+        color: var(--accent);
     }
 }
 /*                                                              SUB CONTAINERS                                                              */
 /*                                                             for div, section                                                             */
+
 .container {
     gap: 1rem;
 }
@@ -268,7 +333,7 @@ id          |   element
     .main > .menu {
         display: grid;
         grid-area: "header";
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr auto auto;
     }
 /*                                                        TWO COLUMN ARTICLE CONTENTS                                                       */
 /*                                                                for article                                                               */
@@ -283,9 +348,25 @@ id          |   element
         width: 100%;
     }
 /*                                                                 MENU BAR                                                                 */
-/*                                                            for div.navigation                                                            */
+/*                                     for a#brand, input checkbox + label, button#menu                                     */
+    .menu > a#brand {
+        grid-area: span 1 / span 3;
+    }
     .menu > .navigation {
         display: none;
+    }
+    .checkbox + .label {
+        grid-area: span 1 / span 1;
+        justify-self: end;
+    }
+    .menu > #menu {
+        display: inline-block;
+        grid-area: span 1 / span 1;
+        justify-self: end;
+
+        & > svg {
+            max-width: 2rem;
+        }
     }
 /*                                                          SLIDER ARTICLE CONTENTS                                                         */
 /*                                                           for article, section                                                           */
@@ -299,15 +380,15 @@ id          |   element
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    
+
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-    
+
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-    
+
 }
