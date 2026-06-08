@@ -2,30 +2,36 @@
 /*                                                                  BRIGHT                                                                  */
 :root {
     /* background colors, 60% */
-    --primary: rgba(255, 255, 255, 1);
+    --primary: rgba(255, 255, 255, 1);          /* WHITE */
     /* font color, 30% */
-    --secondary: rgba(0, 0, 0, 1);
+    --secondary: rgba(0, 0, 0, 1);              /* BLACK */
     /* shades and borders */
-    --shade-light: rgba(118, 123, 145, 1);
-    --shade-dark: rgba(30, 30, 36, 1);
+    --shade-light: rgba(118, 123, 145, 1);      /*  */
+    --shade-dark: rgba(30, 30, 36, 1);          /*  */
     /* gradient background color */
-    --shade-one: rgba(178, 178, 178, 0.1);
+    --shade-one: rgba(178, 178, 178, 0.1);      /*  */
     /* clickable or highlights, 10% */
-    --accent: rgba(254, 101, 79, 1);
+    --accent: rgba(254, 101, 79, 1);            /* TOMATO */
 }
 /*                                                                   DARK                                                                   */
 :root:has(#theme:checked) {
     /* background colors, 60% */
-    --primary: rgba(0, 0, 0, 1);
+    --primary: rgba(0, 0, 0, 1);                /* BLACK */
     /* font color, 30% */
-    --secondary: rgba(255, 255, 255, 1);
+    --secondary: rgba(255, 255, 255, 1);        /* WHITE */
     /* shades and borders */
-    --shade-light: rgba(30, 30, 36, 1);
-    --shade-dark: rgba(118, 123, 145, 1);
+    --shade-light: rgba(30, 30, 36, 1);         /*  */
+    --shade-dark: rgba(118, 123, 145, 1);       /*  */
     /* gradient background color */
-    --shade-one: rgba(178, 178, 178, 0.05);
+    --shade-one: rgba(178, 178, 178, 0.05);     /*  */
     /* clickable or highlights, 10% */
-    --accent: rgba(255, 64, 35, 1);
+    --accent: rgba(255, 64, 35, 1);             /* ORANGEY RED */
+    & .photo.svg {
+        /* SVG IMAGES */
+        filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);     /* WHITE */
+    }
+}
+
 }
 /*                                                                   FONT                                                                   */
 @font-face {
@@ -56,18 +62,23 @@ class       |   element
 .button     |   button
 .checkbox   |   input checkbox
 .container  |   div
+.disabled   |   a
+.down       |   section (any)
 .fixed      |   article
 .footer     |   div
 .header     |   h1
 .label      |   label
 .lcontent   |   section
+.left       |   section (any)
 .link       |   a
 .main       |   body
 .menu       |   div
 .navigation |   div
+.no-pad     |   section
 .ordered    |   ol
 .photo      |   img
 .rcontent   |   section
+.right      |   section (any)
 .section    |   section
 .slider     |   article
 .sub        |   p
@@ -75,6 +86,7 @@ class       |   element
 .table      |   table
 .text       |   p
 .title      |   h2
+.top        |   section (any)
 .twocol     |   article
 .unordered  |   ul
 
@@ -115,6 +127,7 @@ id          |   element
     font-size: 1.5rem;
     margin: 0;
     text-align: justify;
+    text-justify: inter-word;
 /*                                                                  SUBTEXT                                                                 */
 /*                                                                 for p.sub                                                                */
 
@@ -130,7 +143,27 @@ id          |   element
 /*                                                                  for a                                                                   */
 .link:hover {
     color: var(--accent);
+    
+    & strong, b {
+        color: var(--accent);
+        font-weight: normal;
+    }
+
+    & em, i {
+        color: var(--accent);
+        font-style: normal;
+    }
+
+    & .photo {
+        /* ACCENT [ORANGEY RED] */
+        filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%) !important;
+    }
 }
+.link.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
 /* ================================================================ OTHERS ================================================================ */
 /*                                                                  IMAGES                                                                  */
 /*                                                                  for img                                                                 */
@@ -171,16 +204,19 @@ id          |   element
         aspect-ratio: 1 / 1;
 
         &:hover {
+            /* ACCENT [TOMATO] */
             filter: invert(52%) sepia(34%) saturate(4952%) hue-rotate(333deg) brightness(105%) contrast(101%);
         }
     }
 
     &:checked + .label {
         background-image: url(images/dark.svg);
+        /* SECONDARY [WHITE] */
         filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);
 
         &:hover {
-            filter: invert(52%) sepia(34%) saturate(4952%) hue-rotate(333deg) brightness(105%) contrast(101%);
+            /* ACCENT [ORANGEY RED] */
+            filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%);
         }
     }
 }
@@ -252,6 +288,7 @@ id          |   element
         "lcontent rcontent";
     grid-template-columns: 1fr 1fr;
     justify-items: center;
+    align-items: center;
     width: 100%;
 
     & > .header {
@@ -266,46 +303,83 @@ id          |   element
         grid-area: rcontent;
     }
 }
-/*                                                          SLIDER ARTICLE CONTENTS                                                         */
-/*                                                           for article, section                                                           */
-.fixed {
-    grid-template-areas: "buttonl content buttonr";
-}
-.slider {
-    overflow-x: scroll;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
 
-    & > .section {
-        scroll-snap-align: start;
+/*  */
+.left {
+    justify-self: left !important;
+}
+.right {
+    justify-self: right !important;
+}
+.top {
+    align-self: start;
+}
+.down {
+    align-self: end;
+}
+
+/*  */
+h1 {
+    border: 1px solid pink;
+}
+div {
+    border: 1px solid blue;
+}
+span {
+    border: 1px solid red;
+}
+/* [GOAL] Responsive Path */
+/* [GOAL] Animate each individual letter with a unique path */
+.animation {
+    & > #header-anim-one {
+        animation: follow 1s linear infinite forwards alternate-reverse paused;
+        offset-anchor: 20px 20px;
+        offset-path: path("M00,00 Q20,00,20,20");
+        display: inline-block;
+        offset-rotate: 0deg;
     }
 
-    &::scroll-button(right) {
-        grid-area: buttonr;
-        content: ">";
-    }
-    &::scroll-button(left) {
-        grid-area: buttonl;
-        content: "<";
-    }
-    &::scroll-button(right), &::scroll-button(left) {
-        background: 0%;
-        font-size: 10rem;
-        color: var(--secondary);
-        cursor: pointer;
-        border: none;
-    }
-    &::scroll-button(right):disabled, &::scroll-button(left):disabled {
-        cursor: default;
-        color: var(--shade-light);
-    }
-    &::scroll-button(right):active, &::scroll-button(left):active {
-        cursor: default;
-        color: var(--accent);
+    &:hover > #header-anim-one {
+        /* animation: follow 2s linear forwards alternate-reverse running; */
+        animation-play-state: running;
     }
 }
+
+@keyframes follow {
+    0% {offset-distance: 100%;}
+    50% {offset-distance: 0%;}
+    100% {offset-distance: 100%;}
+}
+
+#header-anim-two {
+
+}
+#header-anim-three {
+    
+}
+#header-anim-four {
+
+}
+#header-anim-five {
+
+}
+#header-anim-six {
+
+}
+#header-anim-seven {
+    
+}
+#header-anim-eight {
+
+}
+#header-anim-nine {
+
+}
+#header-anim-one, #header-anim-two, #header-anim-three, #header-anim-four, 
+#header-anim-five, #header-anim-six, #header-anim-seven, #header-anim-eight, #header-anim-nine {
+
+}
+
 /*                                                              SUB CONTAINERS                                                              */
 /*                                                             for div, section                                                             */
 
@@ -315,6 +389,10 @@ id          |   element
 .section {
     gap: 1rem;
     padding: 3%;
+
+    &.no-pad {
+        padding: 0;
+    }
 }
 /* =============================================================== REACTIVE =============================================================== */
 /* designs per sizes [PC, Tablet, Phone] */
@@ -348,7 +426,7 @@ id          |   element
         width: 100%;
     }
 /*                                                                 MENU BAR                                                                 */
-/*                                     for a#brand, input checkbox + label, button#menu                                     */
+/*                                             for a#brand, input checkbox + label, button#menu                                             */
     .menu > a#brand {
         grid-area: span 1 / span 3;
     }
@@ -370,16 +448,90 @@ id          |   element
     }
 /*                                                          SLIDER ARTICLE CONTENTS                                                         */
 /*                                                           for article, section                                                           */
-    .slider::scroll-button(right), .slider::scroll-button(left) {
-        background: 0%;
-        font-size: 5rem;
-        color: black;
+    .fixed {
+        grid-template-areas: "buttonl content buttonr";
+    }
+    .slider {
+        overflow-x: scroll;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        & .section {
+            scroll-snap-align: start;
+        }
+
+        &::scroll-button(right) {
+            grid-area: buttonr;
+            content: ">";
+        }
+        &::scroll-button(left) {
+            grid-area: buttonl;
+            content: "<";
+        }
+        &::scroll-button(right), &::scroll-button(left) {
+            background: 0%;
+            font-size: 5rem;
+            color: var(--secondary);
+            cursor: pointer;
+            border: none;
+        }
+        &::scroll-button(right):disabled, &::scroll-button(left):disabled {
+            cursor: default;
+            color: var(--shade-light);
+        }
+        &::scroll-button(right):active, &::scroll-button(left):active {
+            cursor: default;
+            color: var(--accent);
+        }
     }
 
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width:991px) {
+
+/*                                                          SLIDER ARTICLE CONTENTS                                                         */
+/*                                                           for article, section                                                           */
+    .fixed {
+        grid-template-areas: "buttonl content buttonr";
+    }
+    .slider {
+        overflow-x: scroll;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        & .section {
+            scroll-snap-align: start;
+        }
+
+        &::scroll-button(right) {
+            grid-area: buttonr;
+            content: ">";
+        }
+        &::scroll-button(left) {
+            grid-area: buttonl;
+            content: "<";
+        }
+        &::scroll-button(right), &::scroll-button(left) {
+            background: 0%;
+            font-size: 10rem;
+            color: var(--secondary);
+            cursor: pointer;
+            border: none;
+        }
+        &::scroll-button(right):disabled, &::scroll-button(left):disabled {
+            cursor: default;
+            color: var(--shade-light);
+        }
+        &::scroll-button(right):active, &::scroll-button(left):active {
+            cursor: default;
+            color: var(--accent);
+        }
+    }
 
 }
 
