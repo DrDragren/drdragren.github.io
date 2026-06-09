@@ -106,6 +106,7 @@ id          |   element
     text-align: center;
     text-transform: uppercase;
     width: 100%;
+
 }
 /*                                                                  TITLE                                                                   */
 /*                                                                  for h2                                                                  */
@@ -254,6 +255,7 @@ id          |   element
         grid-area: "header";
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         justify-items: center;
+        margin-bottom: 1.5rem;
         padding: 1rem;
         position: sticky;
         top: 0;
@@ -325,7 +327,6 @@ id          |   element
 /*                                                               for h1, span                                                              */
 .animation {
     justify-self: center;
-    margin-top: 1.5rem;
     width: fit-content;
 
     & > #header-anim-one {
@@ -429,8 +430,8 @@ id          |   element
         animation: continue 1s cubic-bezier(.65,.11,.66,.15) forwards infinite alternate paused;
         color: var(--secondary);
         display: inline-block;
-        offset-anchor: -20px -60px;
-        offset-path: path("M00,00 C00,10 -50,00 -20,-60");
+        offset-anchor: -20px -30px;
+        offset-path: path("M00,00 C00,10 -20,0 -20,-30");
         offset-rotate: -5deg;
     }
 

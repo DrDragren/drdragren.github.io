@@ -8,16 +8,24 @@
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body>
+    <body class="main">
         
-        <div id="menu">
-            <h1>MENU</h1>
-            <a href="index.html">DrDragren</a>
-            <a href="blogs.html">Blog Posts</a>
-            <a href="projects.html">My Projects</a>
-            <a href="games.html">Play Games</a>
-            <a href="recipes.html">Homemade Recipes</a>
-            <a href="about-me.html">About Me</a>
+        <div class="container menu">
+            <a href="index.html" id="brand">DrDragren</a>
+            <div class="container navigation">
+                <a class="link" href="blogs.html">Blog Posts</a>
+                <a class="link" href="projects.html">My Projects</a>
+                <a class="link" href="games.html">Play Games</a>
+                <a class="link" href="recipes.html">Homemade Recipes</a>
+                <a class="link" href="about-me.html">About Me</a>
+            </div>
+            <input class="checkbox" type="checkbox" id="theme">
+            <label class="label" for="theme"></label>
+            <button class="button" id="menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="auto" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                </svg>
+            </button>
         </div>
 
         <h1>Games</h1>
