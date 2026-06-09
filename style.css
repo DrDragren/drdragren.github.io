@@ -1,6 +1,8 @@
 /* ================================================================ THEMES ================================================================ */
 /*                                                                  BRIGHT                                                                  */
 :root {
+    /* clickable or highlights, 10% */
+    --accent: rgba(254, 101, 79, 1);            /* TOMATO */
     /* background colors, 60% */
     --primary: rgba(255, 255, 255, 1);          /* WHITE */
     /* font color, 30% */
@@ -10,11 +12,11 @@
     --shade-dark: rgba(30, 30, 36, 1);          /*  */
     /* gradient background color */
     --shade-one: rgba(178, 178, 178, 0.1);      /*  */
-    /* clickable or highlights, 10% */
-    --accent: rgba(254, 101, 79, 1);            /* TOMATO */
 }
 /*                                                                   DARK                                                                   */
 :root:has(#theme:checked) {
+    /* clickable or highlights, 10% */
+    --accent: rgba(255, 64, 35, 1);             /* ORANGEY RED */
     /* background colors, 60% */
     --primary: rgba(0, 0, 0, 1);                /* BLACK */
     /* font color, 30% */
@@ -24,14 +26,11 @@
     --shade-dark: rgba(118, 123, 145, 1);       /*  */
     /* gradient background color */
     --shade-one: rgba(178, 178, 178, 0.05);     /*  */
-    /* clickable or highlights, 10% */
-    --accent: rgba(255, 64, 35, 1);             /* ORANGEY RED */
+
     & .photo.svg {
         /* SVG IMAGES */
         filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);     /* WHITE */
     }
-}
-
 }
 /*                                                                   FONT                                                                   */
 @font-face {
@@ -41,17 +40,17 @@
 }
 
 * {
+    color: var(--secondary);
     font-family: 'Courier New', Courier, monospace;
     text-decoration: none;
-    color: var(--secondary);
 }
 /*                                                                BACKGROUND                                                                */
 .main {
     background-color: var(--primary);
-    opacity: 0.8;
     background-image: conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg);
     background-position: 0 0, 2.5rem 4.25rem, 0 0, 2.5rem 4.25rem, 2.5rem 0, 0 4.25rem;
     background-size: 5rem 8.5rem;
+    opacity: 0.8;
 }
 
 /* 
@@ -163,7 +162,6 @@ id          |   element
     pointer-events: none;
     cursor: default;
 }
-
 /* ================================================================ OTHERS ================================================================ */
 /*                                                                  IMAGES                                                                  */
 /*                                                                  for img                                                                 */
@@ -197,11 +195,11 @@ id          |   element
     display: none;
 
     & + .label {
+        aspect-ratio: 1 / 1;
         background-image: url(images/bright.svg);
         background-repeat: no-repeat;
         background-size: contain;
         width: 1.5rem;
-        aspect-ratio: 1 / 1;
 
         &:hover {
             /* ACCENT [TOMATO] */
@@ -220,28 +218,46 @@ id          |   element
         }
     }
 }
+/* =============================================================== ALIGNMENT ============================================================== */
+/*                                                                  GENERIC                                                                 */
+/*                                                                  for any                                                                 */
+.left {
+    justify-self: left !important;
+}
+.right {
+    justify-self: right !important;
+}
+.top {
+    align-self: start !important;
+}
+.down {
+    align-self: end !important;
+}
 /* ============================================================== CONTAINERS ============================================================== */
 /*                                                              PAGE CONTAINER                                                              */
 /*                                                    for body, div.menu, article, footer                                                   */
 .main {
     display: grid;
-    margin: 0;
     grid-template-areas:
         "header"
         "article"
         "footer";
+    margin: 0;
+    overflow-x: clip;
+    overflow-y: visible;
     
     & > .menu {
+        align-items: center;
+        background-color: var(--primary);
         border: 1px solid var(--shade-dark);
-        padding: 1rem;
         display: grid;
         grid-area: "header";
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        align-items: center;
         justify-items: center;
+        padding: 1rem;
         position: sticky;
         top: 0;
-        background-color: var(--primary);
+        z-index: 999;
     }
 
     & .article {
@@ -274,8 +290,9 @@ id          |   element
 /*                                                              NAVIGATION BAR                                                              */
 /*                                                            for .navigation > a                                                           */
 .navigation > .link {
-    padding: 0% 0% 0% 6%;
     border-left: 1px solid var(--shade-dark);
+    padding: 0% 0% 0% 6%;
+    
     &:first-child {
         border-left: none;
     }
@@ -283,12 +300,12 @@ id          |   element
 /*                                                        TWO COLUMN ARTICLE CONTENTS                                                       */
 /*                                                          for article, h1, section                                                        */
 .twocol {
+    align-items: center;
     grid-template-areas:
         "title title"
         "lcontent rcontent";
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    align-items: center;
     width: 100%;
 
     & > .header {
@@ -303,137 +320,157 @@ id          |   element
         grid-area: rcontent;
     }
 }
-
-/*  */
-.left {
-    justify-self: left !important;
-}
-.right {
-    justify-self: right !important;
-}
-.top {
-    align-self: start;
-}
-.down {
-    align-self: end;
-}
-
-/*  */
-/* [GOAL] Responsive Path */
-/* [GOAL] Animate each individual letter with a unique path */
+/* ============================================================== ANIMATION ============================================================== */
+/*                                                                 CHAOTIC                                                                 */
+/*                                                               for h1, span                                                              */
 .animation {
-    width: fit-content;
     justify-self: center;
+    margin-top: 1.5rem;
+    width: fit-content;
 
     & > #header-anim-one {
         animation: follow 1s linear infinite forwards alternate-reverse paused;
+        color: var(--accent);
+        display: inline-block;
         offset-anchor: 20px 20px;
         offset-path: path("M00,00 Q20,00,20,20");
-        display: inline-block;
         offset-rotate: -15deg;
     }
 
     &:hover > #header-anim-one {
         animation-play-state: running;
+        color: var(--secondary);
     }
     
     & > #header-anim-two {
         animation: follow 0.75s linear forwards infinite alternate paused;
+        color: var(--accent);
+        display: inline-block;
         offset-anchor: 00px 30px;
         offset-path: path("M00,00 L00,30");
-        display: inline-block;
         offset-rotate: 0deg;
     }
 
     &:hover > #header-anim-two {
         animation-play-state: running;
+        color: var(--secondary);
     }
     
     & > #header-anim-three {
-        animation: follow 1.5s ease-out forwards infinite alternate paused;
-        offset-anchor: 30px 30px;
-        offset-path: path("M00,00 C5,00 65,15 30,30");
+        animation:  follow 1.5s ease-out forwards infinite alternate paused,
+                    squeeze 1.5s ease-out forwards infinite alternate paused;
+        color: var(--secondary);
         display: inline-block;
+        offset-anchor: 30px 30px;
+        offset-path: path("M00,00 C50,00 65,15 30,30");
         offset-rotate: 5deg;
     }
 
     &:hover > #header-anim-three {
         animation-play-state: running;
+        color: var(--accent);
     }
 
     & > #header-anim-four {
-        animation: follow 1.5s ease-out forwards infinite alternate paused;
-        offset-anchor: -30px 30px;
-        offset-path: path("M00,00 C-5,00 -65,15 -30,30");
+        animation:  follow 1.5s ease-out forwards infinite alternate paused,
+                    squeeze 1.5s ease-out forwards infinite alternate paused;
+        color: var(--secondary);
         display: inline-block;
+        offset-anchor: -30px 30px;
+        offset-path: path("M00,00 C-50,00 -65,15 -30,30");
         offset-rotate: -10deg;
     }
 
     &:hover > #header-anim-four {
         animation-play-state: running;
+        color: var(--accent);
     }
 
     & > #header-anim-five {
         animation: continue 0.5s linear forwards infinite paused;
+        color: var(--secondary);
+        display: inline-block;
         offset-anchor: 05px 00px;
         offset-path: path("M 5,0 A 5,5 0 1,1 5,10 A 5,5 0 1,1 5,0");
-        display: inline-block;
         offset-rotate: 5deg;
     }
 
     &:hover > #header-anim-five {
         animation-play-state: running;
+        color: var(--accent);
     }
 
     & > #header-anim-six {
         animation: follow 2s linear forwards infinite alternate paused;
+        color: var(--secondary);
+        display: inline-block;
         offset-anchor: 00px 20px;
         offset-path: path("M00,00 L30,5 L-30,10 L30,15 L00,20");
-        display: inline-block;
         offset-rotate: 0deg;
     }
 
     &:hover > #header-anim-six {
         animation-play-state: running;
+        color: var(--accent);
     }
 
     & > #header-anim-seven {
         animation: jump 1.5s linear infinite paused;
+        color: var(--secondary);
         display: inline-block;
     }
 
     &:hover > #header-anim-seven {
         animation-play-state: running;
+        color: var(--accent);
     }
 
     & > #header-anim-eight {
         animation: continue 1s cubic-bezier(.65,.11,.66,.15) forwards infinite alternate paused;
+        color: var(--secondary);
+        display: inline-block;
         offset-anchor: -20px -60px;
         offset-path: path("M00,00 C00,10 -50,00 -20,-60");
-        display: inline-block;
         offset-rotate: -5deg;
     }
 
     &:hover > #header-anim-eight {
         animation-play-state: running;
+        color: var(--accent);
     }
 
     & > #header-anim-nine {
-        animation: continue 1s linear forwards infinite alternate paused;
+        animation:  continue 1s linear forwards infinite alternate paused,
+                    flip 0.5s linear forwards infinite alternate paused;
+        color: var(--secondary);
+        display: inline-block;
         offset-anchor: 00px 00px;
         offset-path: path("M0,0 L40,10 L-15,-25 L-5,10 L25,-40 L0,0");
-        display: inline-block;
         offset-rotate: 1deg;
     }
 
     &:hover > #header-anim-nine {
         animation-play-state: running;
+        color: var(--accent);
     }
+}
+/* ============================================================== ANIMATION ============================================================== */
+/*                                                              for @keyframes                                                             */
+@keyframes flip {
+    0% {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(180deg);}
+}
+
+@keyframes squeeze {
+    5% {transform: rotateY(70deg);}
+    50% {transform: rotateY(0deg);}
+    50% {transform: rotateY(0deg);}
+    80% {transform: rotateY(70deg);}
 }
 
 @keyframes jump {
-    0% {transform: translateY(0em);}
-    5% {transform: translateY(0.2em);}
+    0% {transform: translateY(0em) rotateX(0deg);}
+    5% {transform: translateY(0.2em) rotateX(50deg);}
     40% {transform: translateY(-0.4em);}
     65% {transform: translateY(-0.5em);}
     90% {transform: translateY(0em);}
@@ -449,10 +486,8 @@ id          |   element
     50% {offset-distance: 0%;}
     100% {offset-distance: 100%;}
 }
-
 /*                                                              SUB CONTAINERS                                                              */
 /*                                                             for div, section                                                             */
-
 .container {
     gap: 1rem;
 }
@@ -468,23 +503,100 @@ id          |   element
 /* designs per sizes [PC, Tablet, Phone] */
 /* scaling animations */
 
-/* PHONE */
-/*  Extra small devices (portrait phones, less than 576px)
-    No media query since this is the default in Bootstrap */
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
 
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width:991px) {
+
+    /* =============================================================== TEXT =============================================================== */
+    /*                                                                HEADER                                                                */
+    /*                                                                for h1                                                                */
+    .header {
+        font-size: 5em;
+    }
+    /*                                                                TITLE                                                                */
+    /*                                                                for h2                                                                */
+    .title {
+        font-size: 3rem;
+    }
+    /*                                                               SUBTITLE                                                               */
+    /*                                                                for h3                                                                */
+    .subtitle {
+        font-size: 2rem;
+    }
+    /*                                                                 TEXT                                                                 */
+    /*                                                                 for p                                                                */
+    .text {
+        font-size: 1rem;
+    }
+    /*                                                                SUBTEXT                                                               */
+    /*                                                               for p.sub                                                              */
+    &.sub {
+        font-size: 0.7rem;
+    }
+    /*                                                        SLIDER ARTICLE CONTENTS                                                       */
+    /*                                                         for article, section                                                         */
+    .fixed {
+        grid-template-areas: "buttonl content buttonr";
+    }
+    .slider {
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        & .twocol {
+            scroll-snap-align: start;
+        }
+
+        &::scroll-button(right) {
+            content: ">";
+            grid-area: buttonr;
+        }
+        &::scroll-button(left) {
+            content: "<";
+            grid-area: buttonl;
+        }
+        &::scroll-button(right), &::scroll-button(left) {
+            background: 0%;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+            font-size: 10rem;
+        }
+        &::scroll-button(right):disabled, &::scroll-button(left):disabled {
+            color: var(--shade-light);
+            cursor: default;
+        }
+        &::scroll-button(right):active, &::scroll-button(left):active {
+            color: var(--accent);
+            cursor: default;
+        }
+    }
+
+}
+
+/* PHONE */
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 0px) and (max-width: 767px) {
     
-/* ============================================================== CONTAINERS ============================================================== */
-/*                                                              PAGE CONTAINER                                                              */
-/*                                                               for div.menu                                                               */
+    /* ============================================================ CONTAINERS ============================================================ */
+    /*                                                            PAGE CONTAINER                                                            */
+    /*                                                             for div.menu                                                             */
     .main > .menu {
-        display: grid;
-        grid-area: "header";
         grid-template-columns: 1fr 1fr 1fr auto auto;
     }
-/*                                                        TWO COLUMN ARTICLE CONTENTS                                                       */
-/*                                                                for article                                                               */
+    /*                                                      TWO COLUMN ARTICLE CONTENTS                                                     */
+    /*                                                              for article                                                             */
     .twocol {
         display: grid;
         grid-area: "article";
@@ -493,19 +605,14 @@ id          |   element
             "lcontent"
             "rcontent";
         grid-template-columns: 1fr;
-        width: 100%;
     }
-/*                                                                 MENU BAR                                                                 */
-/*                                             for a#brand, input checkbox + label, button#menu                                             */
+    /*                                                               MENU BAR                                                               */
+    /*                                           for a#brand, input checkbox + label, button#menu                                           */
     .menu > a#brand {
         grid-area: span 1 / span 3;
     }
     .menu > .navigation {
         display: none;
-    }
-    .checkbox + .label {
-        grid-area: span 1 / span 1;
-        justify-self: end;
     }
     .menu > #menu {
         display: inline-block;
@@ -516,101 +623,85 @@ id          |   element
             max-width: 2rem;
         }
     }
-/*                                                          SLIDER ARTICLE CONTENTS                                                         */
-/*                                                           for article, section                                                           */
+    /*                                                        SLIDER ARTICLE CONTENTS                                                       */
+    /*                                                         for article, section                                                         */
     .fixed {
         grid-template-areas: "buttonl content buttonr";
     }
     .slider {
-        overflow-x: scroll;
         grid-auto-flow: column;
         grid-auto-columns: 100%;
+        overflow-x: scroll;
         scroll-snap-type: x mandatory;
         scrollbar-width: none;
 
-        & .section {
+        & .twocol {
             scroll-snap-align: start;
         }
 
         &::scroll-button(right) {
-            grid-area: buttonr;
             content: ">";
+            grid-area: buttonr;
         }
         &::scroll-button(left) {
-            grid-area: buttonl;
             content: "<";
+            grid-area: buttonl;
         }
         &::scroll-button(right), &::scroll-button(left) {
             background: 0%;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
             font-size: 5rem;
-            color: var(--secondary);
-            cursor: pointer;
-            border: none;
         }
         &::scroll-button(right):disabled, &::scroll-button(left):disabled {
-            cursor: default;
             color: var(--shade-light);
+            cursor: default;
         }
         &::scroll-button(right):active, &::scroll-button(left):active {
-            cursor: default;
             color: var(--accent);
-        }
-    }
-
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width:991px) {
-
-/*                                                          SLIDER ARTICLE CONTENTS                                                         */
-/*                                                           for article, section                                                           */
-    .fixed {
-        grid-template-areas: "buttonl content buttonr";
-    }
-    .slider {
-        overflow-x: scroll;
-        grid-auto-flow: column;
-        grid-auto-columns: 100%;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-
-        & .section {
-            scroll-snap-align: start;
-        }
-
-        &::scroll-button(right) {
-            grid-area: buttonr;
-            content: ">";
-        }
-        &::scroll-button(left) {
-            grid-area: buttonl;
-            content: "<";
-        }
-        &::scroll-button(right), &::scroll-button(left) {
-            background: 0%;
-            font-size: 10rem;
-            color: var(--secondary);
-            cursor: pointer;
-            border: none;
-        }
-        &::scroll-button(right):disabled, &::scroll-button(left):disabled {
             cursor: default;
-            color: var(--shade-light);
-        }
-        &::scroll-button(right):active, &::scroll-button(left):active {
-            cursor: default;
-            color: var(--accent);
         }
     }
 
 }
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+/*  Extra small devices (portrait phones, less than 576px)
+    No media query since this is the default in Bootstrap */
+@media (min-width: 0px) and (max-width: 576px) {
 
-}
+    /* =============================================================== TEXT =============================================================== */
+    /*                                                                HEADER                                                                */
+    /*                                                                for h1                                                                */
+    .header {
+        font-size: 4em;
+    }
+    /*                                                                 TITLE                                                                */
+    /*                                                                for h2                                                                */
+    .title {
+        font-size: 2.5rem;
+    }
+    /*                                                               SUBTITLE                                                               */
+    /*                                                                for h3                                                                */
+    .subtitle {
+        font-size: 1.5rem;
+    }
+    /*                                                                 TEXT                                                                 */
+    /*                                                                 for p                                                                */
+    .text {
+        font-size: 0.75rem;
+    }
+    /*                                                                SUBTEXT                                                               */
+    /*                                                               for p.sub                                                              */
 
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
+    &.sub {
+        font-size: 0.5rem;
+    }
+
+    /*                                                        SLIDER ARTICLE CONTENTS                                                       */
+    /*                                                         for article, section                                                         */
+    .slider::scroll-button(right), .slider::scroll-button(left) {
+            font-size: 3rem ;
+    }
 
 }
