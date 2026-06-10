@@ -1,0 +1,226 @@
+/* =============================================================== REACTIVE =============================================================== */
+/* designs per sizes [PC, Tablet, Phone] */
+/* scaling animations */
+/*                                                                 DESKTOPS                                                                 */
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+/*                                                                  TABLETS                                                                 */
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width:991px) {
+
+    /* =============================================================== TEXT =============================================================== */
+    /*                                                                HEADER                                                                */
+    /*                                                                for h1                                                                */
+    .header {
+        font-size: 5em;
+    }
+    /*                                                                TITLE                                                                */
+    /*                                                                for h2                                                                */
+    .title {
+        font-size: 3rem;
+    }
+    /*                                                               SUBTITLE                                                               */
+    /*                                                                for h3                                                                */
+    .subtitle {
+        font-size: 2rem;
+    }
+    /*                                                                 TEXT                                                                 */
+    /*                                                                 for p                                                                */
+    .text {
+        font-size: 1rem;
+    }
+    /*                                                                SUBTEXT                                                               */
+    /*                                                               for p.sub                                                              */
+    &.sub {
+        font-size: 0.7rem;
+    }
+    /*                                                        SLIDER ARTICLE CONTENTS                                                       */
+    /*                                                         for article, section                                                         */
+    .fixed {
+        grid-template-areas: "buttonl content buttonr";
+    }
+    .slider {
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        & .twocol {
+            scroll-snap-align: start;
+        }
+
+        &::scroll-button(right) {
+            content: ">";
+            grid-area: buttonr;
+        }
+
+        &::scroll-button(left) {
+            content: "<";
+            grid-area: buttonl;
+        }
+
+        &::scroll-button(right), &::scroll-button(left) {
+            background: 0%;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+            font-size: 10rem;
+        }
+
+        &::scroll-button(right):disabled, &::scroll-button(left):disabled {
+            color: var(--shade-light);
+            cursor: default;
+        }
+
+        &::scroll-button(right):enabled:active, &::scroll-button(left):enabled:active {
+            color: var(--accent);
+            cursor: default;
+        }
+    }
+
+    .linked-in-large {
+        display: none;
+    }
+    .linked-in-small {
+        display: inherit;
+    }
+
+}
+/*                                                                  PHONES                                                                  */
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 0px) and (max-width: 767px) {
+    
+    /* ============================================================ CONTAINERS ============================================================ */
+    /*                                                            PAGE CONTAINER                                                            */
+    /*                                                             for div.menu                                                             */
+    .main > .menu {
+        grid-template-columns: 1fr 1fr 1fr auto auto;
+    }
+    /*                                                      TWO COLUMN ARTICLE CONTENTS                                                     */
+    /*                                                              for article                                                             */
+    .twocol {
+        display: grid;
+        grid-area: "article";
+        grid-template-areas:
+            "title"
+            "lcontent"
+            "rcontent";
+        grid-template-columns: 1fr;
+    }
+    /*                                                               MENU BAR                                                               */
+    /*                                           for a#brand, input checkbox + label, button#menu                                           */
+    .menu > a#brand {
+        grid-area: span 1 / span 3;
+    }
+    .menu > .navigation {
+        display: none;
+    }
+    .menu > #menu {
+        display: inline-block;
+        grid-area: span 1 / span 1;
+        justify-self: end;
+
+        & > svg {
+            max-width: 2rem;
+        }
+    }
+    /*                                                        SLIDER ARTICLE CONTENTS                                                       */
+    /*                                                         for article, section                                                         */
+    .fixed {
+        grid-template-areas: "buttonl content buttonr";
+    }
+    .slider {
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        & .twocol {
+            scroll-snap-align: start;
+        }
+
+        &::scroll-button(right) {
+            content: ">";
+            grid-area: buttonr;
+        }
+        &::scroll-button(left) {
+            content: "<";
+            grid-area: buttonl;
+        }
+        &::scroll-button(right), &::scroll-button(left) {
+            background: 0%;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+            font-size: 5rem;
+        }
+        &::scroll-button(right):disabled, &::scroll-button(left):disabled {
+            color: var(--shade-light);
+            cursor: default;
+        }
+        &::scroll-button(right):enabled:active, &::scroll-button(left):enabled:active {
+            color: var(--accent);
+            cursor: default;
+        }
+    }
+    /*                                                            LINKEDIN BADGE                                                            */
+    /*                                                                for div                                                               */
+    .linked-in-large {
+        display: none;
+    }
+    .linked-in-small {
+        display: initial;
+    }
+}
+/*  Extra small devices (portrait phones, less than 576px)
+    No media query since this is the default in Bootstrap */
+@media (min-width: 0px) and (max-width: 576px) {
+
+    /* =============================================================== TEXT =============================================================== */
+    /*                                                                HEADER                                                                */
+    /*                                                                for h1                                                                */
+    .header {
+        font-size: 4em;
+    }
+    /*                                                                 TITLE                                                                */
+    /*                                                                for h2                                                                */
+    .title {
+        font-size: 2.5rem;
+    }
+    /*                                                               SUBTITLE                                                               */
+    /*                                                                for h3                                                                */
+    .subtitle {
+        font-size: 1.5rem;
+    }
+    /*                                                                 TEXT                                                                 */
+    /*                                                                 for p                                                                */
+    .text {
+        font-size: 0.75rem;
+    /*                                                                SUBTEXT                                                               */
+    /*                                                               for p.sub                                                              */
+        &.sub {
+            font-size: 0.5rem;
+        }
+    }
+    /*                                                        SLIDER ARTICLE CONTENTS                                                       */
+    /*                                                         for article, section                                                         */
+    .slider::scroll-button(right), .slider::scroll-button(left) {
+            font-size: 3rem ;
+    }
+    /*                                                            LINKEDIN BADGE                                                            */
+    /*                                                                for div                                                               */
+    .linked-in-large {
+        display: none;
+    }
+    .linked-in-small {
+        display: initial;
+    }
+}

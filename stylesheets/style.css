@@ -1,0 +1,113 @@
+/* 
+
+    SELECTOR LISTS
+class               |   element
+.article            |   article
+.badge-base         |   div (LinkedIn)
+.button             |   button
+.checkbox           |   input checkbox
+.container          |   div
+.disabled           |   a
+.down               |   section (any)
+.fixed              |   article
+.footer             |   div
+.header             |   h1
+.label              |   label
+.lcontent           |   section
+.left               |   section (any)
+.LI-profile-badge   |   div (LinkedIn)
+.link               |   a
+.main               |   body
+.menu               |   div
+.navigation         |   div
+.no-pad             |   section
+.ordered            |   ol
+.photo              |   img
+.rcontent           |   section
+.right              |   section (any)
+.section            |   section
+.slider             |   article
+.socials            |   section
+.sub                |   p
+.subtitle           |   h3
+.table              |   table
+.text               |   p
+.title              |   h2
+.top                |   section (any)
+.twocol             |   article
+.unordered          |   ul
+
+id                  |   element
+#brand              |   a
+#menu               |   button
+
+*/
+/* ================================================================ THEMES ================================================================ */
+/*                                                                  BRIGHT                                                                  */
+:root {
+    /* clickable or highlights, 10% */
+    --accent: rgba(254, 101, 79, 1);            /* TOMATO */
+    /* background colors, 60% */
+    --primary: rgba(255, 255, 255, 1);          /* WHITE */
+    /* font color, 30% */
+    --secondary: rgba(0, 0, 0, 1);              /* BLACK */
+    /* shades and borders */
+    --shade-light: rgba(118, 123, 145, 1);      /*  */
+    --shade-dark: rgba(30, 30, 36, 1);          /*  */
+    /* gradient background color */
+    --shade-one: rgba(178, 178, 178, 0.1);      /*  */
+}
+/*                                                                   DARK                                                                   */
+:root:has(#theme:checked) {
+    /* clickable or highlights, 10% */
+    --accent: rgba(255, 64, 35, 1);             /* ORANGEY RED */
+    /* background colors, 60% */
+    --primary: rgba(0, 0, 0, 1);                /* BLACK */
+    /* font color, 30% */
+    --secondary: rgba(255, 255, 255, 1);        /* WHITE */
+    /* shades and borders */
+    --shade-light: rgba(30, 30, 36, 1);         /*  */
+    --shade-dark: rgba(118, 123, 145, 1);       /*  */
+    /* gradient background color */
+    --shade-one: rgba(178, 178, 178, 0.05);     /*  */
+
+    & .photo.svg {
+        /* SVG IMAGES */
+        filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);     /* WHITE */
+    }
+}
+/*                                                                   FONT                                                                   */
+@font-face {
+    color: var(--secondary);
+    font-family: 'Courier New';
+    src: url(styles/cour.ttf);
+}
+
+* {
+    color: var(--secondary);
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+}
+/*                                                                BACKGROUND                                                                */
+.main {
+    background-color: var(--primary);
+    background-image: conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg);
+    background-position: 0 0, 2.5rem 4.25rem, 0 0, 2.5rem 4.25rem, 2.5rem 0, 0 4.25rem;
+    background-size: 5rem 8.5rem;
+    opacity: 0.8;
+}
+/* =============================================================== ALIGNMENT ============================================================== */
+/*                                                                  GENERIC                                                                 */
+/*                                                                  for any                                                                 */
+.left {
+    justify-self: left !important;
+}
+.right {
+    justify-self: right !important;
+}
+.top {
+    align-self: start !important;
+}
+.down {
+    align-self: end !important;
+}

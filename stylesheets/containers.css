@@ -1,0 +1,120 @@
+/* ============================================================== CONTAINERS ============================================================== */
+/*                                                              PAGE CONTAINER                                                              */
+/*                                                    for body, div.menu, article, footer                                                   */
+.main {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "article"
+        "footer";
+    margin: 0;
+    overflow-x: clip;
+    overflow-y: visible;
+    
+    & > .menu {
+        align-items: center;
+        background-color: var(--primary);
+        border: 1px solid var(--shade-dark);
+        display: grid;
+        grid-area: "header";
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        justify-items: center;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    & .article {
+        display: grid;
+        grid-area: "article";
+    }
+
+    & > .footer {
+        grid-area: "footer";
+    }
+}
+/*                                                                 MENU BAR                                                                 */
+/*                                     for a#brand, div.navigation, input checkbox + label, button#menu                                     */
+.menu > a#brand {
+    grid-area: span 1 / span 2;
+}
+.menu > .navigation {
+    display: flex;
+    grid-area: span 1 / span 5;
+    justify-content: space-between;
+    width: 100%;
+}
+.checkbox + .label {
+    grid-area: span 1 / span 1;
+    justify-self: end;
+}
+.menu > #menu {
+        display: none;
+    }
+/*                                                              NAVIGATION BAR                                                              */
+/*                                                            for .navigation > a                                                           */
+.navigation > .link {
+    border-left: 1px solid var(--shade-dark);
+    padding: 0% 0% 0% 6%;
+    
+    &:first-child {
+        border-left: none;
+    }
+}
+/*                                                        TWO COLUMN ARTICLE CONTENTS                                                       */
+/*                                                          for article, h1, section                                                        */
+.twocol {
+    align-items: center;
+    grid-template-areas:
+        "title title"
+        "lcontent rcontent";
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    width: 100%;
+
+    & > .header {
+        grid-area: title;
+    }
+
+    & > .lcontent {
+        grid-area: lcontent;
+    }
+
+    & > .rcontent {
+        grid-area: rcontent;
+    }
+}
+/*                                                              SUB CONTAINERS                                                              */
+/*                                                             for div, section                                                             */
+.container {
+    gap: 1rem;
+}
+.section {
+    gap: 1rem;
+    padding: 3%;
+
+    &.no-pad {
+        padding: 0;
+    }
+}
+/*                                                              LINKEDIN BADGE                                                              */
+/*                                                                  for div                                                                 */
+.linked-in-large {
+    justify-self: center;
+}
+.linked-in-small {
+    display: none;
+    justify-self: center;
+}
+/*                                                               SOCIAL MEDIA                                                               */
+/*                                                            for div, link, img                                                            */
+.socials {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+
+    & > .link > .photo {
+        width: 100%;
+    }
+}

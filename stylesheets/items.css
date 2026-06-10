@@ -1,0 +1,83 @@
+/* ================================================================= ITEMS ================================================================ */
+/*                                                                  LINKS                                                                   */
+/*                                                                  for a                                                                   */
+.link {
+    &:hover {
+        color: var(--accent);
+        
+        & strong, b {
+            color: var(--accent);
+            font-weight: normal;
+        }
+
+        & em, i {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        & .photo {
+            /* ACCENT [ORANGEY RED] */
+            filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%) !important;
+        }
+    }
+
+    &.disabled {
+        cursor: default;
+        pointer-events: none;
+    }
+}
+/*                                                                  IMAGES                                                                  */
+/*                                                                  for img                                                                 */
+.photo {
+    height: auto;
+    max-width: 100%;
+}
+/*                                                                  TABLES                                                                  */
+/*                                                                 for table                                                                */
+.table {
+    text-align: justify;
+}
+/*                                                            NUMBERS AND BULLETS                                                           */
+/*                                                               for ol and ul                                                              */
+.ordered {
+    text-align: justify;
+}
+.unordered {
+    text-align: justify;
+}
+/*                                                                  BUTTONS                                                                 */
+/*                                                                for button                                                                */
+.button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: justify;
+}
+/*                                                         for input checkbox, label                                                        */
+.checkbox {
+    display: none;
+
+    & + .label {
+        aspect-ratio: 1 / 1;
+        background-image: url(../images/bright.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 1.5rem;
+
+        &:hover {
+            /* ACCENT [TOMATO] */
+            filter: invert(52%) sepia(34%) saturate(4952%) hue-rotate(333deg) brightness(105%) contrast(101%);
+        }
+    }
+
+    &:checked + .label {
+        background-image: url(../images/dark.svg);
+        /* SECONDARY [WHITE] */
+        filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);
+
+        &:hover {
+            /* ACCENT [ORANGEY RED] */
+            filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%);
+        }
+    }
+}

@@ -1,0 +1,165 @@
+/* ============================================================== ANIMATION ============================================================== */
+/*                                                                 CHAOTIC                                                                 */
+/*                                                               for h1, span                                                              */
+.animation {
+    justify-self: center;
+    width: fit-content;
+
+    & > #header-anim-one {
+        animation: follow 1s linear infinite forwards alternate-reverse paused;
+        color: var(--accent);
+        display: inline-block;
+        offset-anchor: 20px 20px;
+        offset-path: path("M00,00 Q20,00,20,20");
+        offset-rotate: -15deg;
+    }
+
+    &:hover > #header-anim-one {
+        animation-play-state: running;
+        color: var(--secondary);
+    }
+    
+    & > #header-anim-two {
+        animation: follow 0.75s linear forwards infinite alternate paused;
+        color: var(--accent);
+        display: inline-block;
+        offset-anchor: 00px 30px;
+        offset-path: path("M00,00 L00,30");
+        offset-rotate: 0deg;
+    }
+
+    &:hover > #header-anim-two {
+        animation-play-state: running;
+        color: var(--secondary);
+    }
+    
+    & > #header-anim-three {
+        animation:  follow 1.5s ease-out forwards infinite alternate paused,
+                    squeeze 1.5s ease-out forwards infinite alternate paused;
+        color: var(--secondary);
+        display: inline-block;
+        offset-anchor: 30px 30px;
+        offset-path: path("M00,00 C50,00 65,15 30,30");
+        offset-rotate: 5deg;
+    }
+
+    &:hover > #header-anim-three {
+        animation-play-state: running;
+        color: var(--accent);
+    }
+
+    & > #header-anim-four {
+        animation:  follow 1.5s ease-out forwards infinite alternate paused,
+                    squeeze 1.5s ease-out forwards infinite alternate paused;
+        color: var(--secondary);
+        display: inline-block;
+        offset-anchor: -30px 30px;
+        offset-path: path("M00,00 C-50,00 -65,15 -30,30");
+        offset-rotate: -10deg;
+    }
+
+    &:hover > #header-anim-four {
+        animation-play-state: running;
+        color: var(--accent);
+    }
+
+    & > #header-anim-five {
+        animation: continue 0.5s linear forwards infinite paused;
+        color: var(--secondary);
+        display: inline-block;
+        offset-anchor: 05px 00px;
+        offset-path: path("M 5,0 A 5,5 0 1,1 5,10 A 5,5 0 1,1 5,0");
+        offset-rotate: 5deg;
+    }
+
+    &:hover > #header-anim-five {
+        animation-play-state: running;
+        color: var(--accent);
+    }
+
+    & > #header-anim-six {
+        animation: follow 2s linear forwards infinite alternate paused;
+        color: var(--secondary);
+        display: inline-block;
+        offset-anchor: 00px 20px;
+        offset-path: path("M00,00 L30,5 L-30,10 L30,15 L00,20");
+        offset-rotate: 0deg;
+    }
+
+    &:hover > #header-anim-six {
+        animation-play-state: running;
+        color: var(--accent);
+    }
+
+    & > #header-anim-seven {
+        animation: jump 1.5s linear infinite paused;
+        color: var(--secondary);
+        display: inline-block;
+    }
+
+    &:hover > #header-anim-seven {
+        animation-play-state: running;
+        color: var(--accent);
+    }
+
+    & > #header-anim-eight {
+        animation: continue 1s cubic-bezier(.65,.11,.66,.15) forwards infinite alternate paused;
+        color: var(--secondary);
+        display: inline-block;
+        offset-anchor: -20px -30px;
+        offset-path: path("M00,00 C00,10 -20,0 -20,-30");
+        offset-rotate: -5deg;
+    }
+
+    &:hover > #header-anim-eight {
+        animation-play-state: running;
+        color: var(--accent);
+    }
+
+    & > #header-anim-nine {
+        animation:  continue 1s linear forwards infinite alternate paused,
+                    flip 0.5s linear forwards infinite alternate paused;
+        color: var(--secondary);
+        display: inline-block;
+        offset-anchor: 00px 00px;
+        offset-path: path("M0,0 L40,10 L-15,-25 L-5,10 L25,-40 L0,0");
+        offset-rotate: 1deg;
+    }
+
+    &:hover > #header-anim-nine {
+        animation-play-state: running;
+        color: var(--accent);
+    }
+}
+/*                                                                KEYFRAMES                                                                */
+/*                                                              for @keyframes                                                             */
+@keyframes flip {
+    0% {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(180deg);}
+}
+
+@keyframes squeeze {
+    5% {transform: rotateY(70deg);}
+    50% {transform: rotateY(0deg);}
+    50% {transform: rotateY(0deg);}
+    80% {transform: rotateY(70deg);}
+}
+
+@keyframes jump {
+    0% {transform: translateY(0em) rotateX(0deg);}
+    5% {transform: translateY(0.2em) rotateX(50deg);}
+    40% {transform: translateY(-0.4em);}
+    65% {transform: translateY(-0.5em);}
+    90% {transform: translateY(0em);}
+}
+
+@keyframes continue {
+    0% {offset-distance: 100%;}
+    100% {offset-distance: 0%;}
+}
+
+@keyframes follow {
+    0% {offset-distance: 100%;}
+    50% {offset-distance: 0%;}
+    100% {offset-distance: 100%;}
+}

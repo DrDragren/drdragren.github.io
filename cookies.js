@@ -1,10 +1,14 @@
-// Cookies
-
 function saveThemeState(checkBox) {
     localStorage.setItem(checkBox.id, checkBox.checked);
     // Change LinkedIn Theme
-    const badge = document.querySelector(".badge-base");
-    if (badge) {badge.setAttribute("data-theme", checkBox.checked ? "dark" : "light");}
+    // const badge = document.querySelector(".badge-base");
+    // if (badge) {badge.setAttribute("data-theme", checkBox.checked ? "dark" : "light");}
+    const badges = document.querySelectorAll(".badge-base");
+    if (badges.length > 0) {
+        badges.forEach(badge => {
+            badge.setAttribute("data-theme", checkBox.checked ? "dark" : "light");
+        });
+    }
     window.location.reload();
 }
 
@@ -14,8 +18,14 @@ function loadThemeState(checkBox) {
         checkBox.checked = savedState === "true";
     }
     // Change LinkedIn Theme
-    const badge = document.querySelector(".badge-base");
-    if (badge) {badge.setAttribute("data-theme", checkBox.checked ? "dark" : "light");}
+    // const badge = document.querySelector(".badge-base");
+    const badges = document.querySelectorAll(".badge-base");
+    if (badges.length > 0) {
+        badges.forEach(badge => {
+            badge.setAttribute("data-theme", checkBox.checked ? "dark" : "light");        
+        });
+    }
+    // if (badge) {badge.setAttribute("data-theme", checkBox.checked ? "dark" : "light");}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
