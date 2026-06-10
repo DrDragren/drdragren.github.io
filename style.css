@@ -56,42 +56,44 @@
 /* 
 
     SELECTOR LISTS
-class       |   element
-.article    |   article
-.button     |   button
-.checkbox   |   input checkbox
-.container  |   div
-.disabled   |   a
-.down       |   section (any)
-.fixed      |   article
-.footer     |   div
-.header     |   h1
-.label      |   label
-.lcontent   |   section
-.left       |   section (any)
-.link       |   a
-.main       |   body
-.menu       |   div
-.navigation |   div
-.no-pad     |   section
-.ordered    |   ol
-.photo      |   img
-.rcontent   |   section
-.right      |   section (any)
-.section    |   section
-.slider     |   article
-.sub        |   p
-.subtitle   |   h3
-.table      |   table
-.text       |   p
-.title      |   h2
-.top        |   section (any)
-.twocol     |   article
-.unordered  |   ul
+class               |   element
+.article            |   article
+.badge-base         |   div (LinkedIn)
+.button             |   button
+.checkbox           |   input checkbox
+.container          |   div
+.disabled           |   a
+.down               |   section (any)
+.fixed              |   article
+.footer             |   div
+.header             |   h1
+.label              |   label
+.lcontent           |   section
+.left               |   section (any)
+.LI-profile-badge   |   div (LinkedIn)
+.link               |   a
+.main               |   body
+.menu               |   div
+.navigation         |   div
+.no-pad             |   section
+.ordered            |   ol
+.photo              |   img
+.rcontent           |   section
+.right              |   section (any)
+.section            |   section
+.slider             |   article
+.sub                |   p
+.subtitle           |   h3
+.table              |   table
+.text               |   p
+.title              |   h2
+.top                |   section (any)
+.twocol             |   article
+.unordered          |   ul
 
-id          |   element
-#brand      |   a
-#menu       |   button
+id                  |   element
+#brand              |   a
+#menu               |   button
 
 */
 
@@ -578,7 +580,7 @@ id          |   element
             color: var(--shade-light);
             cursor: default;
         }
-        &::scroll-button(right):active, &::scroll-button(left):active {
+        &::scroll-button(right):enabled:active, &::scroll-button(left):enabled:active {
             color: var(--accent);
             cursor: default;
         }
