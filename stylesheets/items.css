@@ -5,6 +5,10 @@
     &:hover {
         color: var(--accent);
         
+        & .header, .title, .subtitle, .text, .subtext {
+            color: var(--accent);
+        }
+
         & strong, b {
             color: var(--accent);
             font-weight: normal;
@@ -19,6 +23,10 @@
             /* ACCENT [ORANGEY RED] */
             filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%) !important;
         }
+    }
+
+    &:active {
+        filter: brightness(50%);     /* WHITE */
     }
 
     &.disabled {
@@ -52,8 +60,13 @@
     background-color: transparent;
     cursor: pointer;
     text-align: justify;
+
+    &:active {
+        opacity: 50%;
+    }
 }
-/*                                                         for input checkbox, label                                                        */
+/*                                                                   INPUT                                                                  */
+/*                                                   for input-checkbox, input-text label                                                   */
 .checkbox {
     display: none;
 
@@ -63,6 +76,10 @@
         background-repeat: no-repeat;
         background-size: contain;
         width: 1.5rem;
+        
+        &:active {
+            opacity: 50%;
+        }
 
         &:hover {
             /* ACCENT [TOMATO] */
@@ -80,4 +97,7 @@
             filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%);
         }
     }
+}
+.input-text {
+    background-color: var(--accent);
 }

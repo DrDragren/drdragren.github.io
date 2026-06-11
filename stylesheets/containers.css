@@ -35,6 +35,19 @@
         grid-area: "footer";
     }
 }
+/*                                                              SUB CONTAINERS                                                              */
+/*                                                             for div, section                                                             */
+.container {
+    gap: 1rem;
+}
+.section {
+    gap: 1rem;
+    padding: 3%;
+
+    &.no-pad {
+        padding: 0;
+    }
+}
 /*                                                                 MENU BAR                                                                 */
 /*                                     for a#brand, div.navigation, input checkbox + label, button#menu                                     */
 .menu > a#brand {
@@ -55,13 +68,9 @@
     }
 /*                                                              NAVIGATION BAR                                                              */
 /*                                                            for .navigation > a                                                           */
-.navigation > .link {
+.menu > .navigation > .link:not(:first-child) {
     border-left: 1px solid var(--shade-dark);
     padding: 0% 0% 0% 6%;
-    
-    &:first-child {
-        border-left: none;
-    }
 }
 /*                                                        TWO COLUMN ARTICLE CONTENTS                                                       */
 /*                                                          for article, h1, section                                                        */
@@ -86,17 +95,132 @@
         grid-area: rcontent;
     }
 }
-/*                                                              SUB CONTAINERS                                                              */
-/*                                                             for div, section                                                             */
-.container {
-    gap: 1rem;
-}
-.section {
-    gap: 1rem;
-    padding: 3%;
+/*                                                                  FOOTER                                                                  */
+/*                                                                  for div                                                                 */
+.footer {
+    background-color: var(--primary);
+    border-top: 2px solid var(--accent);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
-    &.no-pad {
-        padding: 0;
+    & .subtitle {
+        justify-self: center;
+    }
+
+    & > .container {
+        align-content: start;
+        height: 100%;
+        padding: 0% 5%;
+
+        &:not(:first-child) {
+            position: relative;
+            
+            &::before {
+                content: "";
+                position: absolute;
+                /* top: 15%;
+                height: 85%; */
+                top: 5%;
+                height: 90%;
+                width: 1px;
+                background: linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    var(--accent) 20%,
+                    var(--accent) 80%,
+                    transparent 100%
+                );
+            }
+            /* border-left: 2px solid var(--accent);
+            top: 10%;
+            bottom: 10%; */
+        }
+    }
+    /*                                                                 BRAND                                                                */
+    /*                                                                for div                                                               */
+    & > .brand {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-content: center;
+
+        & .container {
+            text-align: center;
+        }
+    }
+    /*                                                       NAVIGATE AND QUICK LINKS                                                       */
+    /*                                                                for div                                                               */
+    & > .navigation, .quick-links {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    /*                                                                SOCIALS                                                               */
+    /*                                                                for div                                                               */
+    & > .socials {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    /*                                                              NEWSLETTER                                                              */
+    /*                                                                for div                                                               */
+    & > .newsletter {
+        display: grid;
+        grid-area: span 1 / span 3;
+        grid-template-areas: "label" "quick-links";
+
+        & > .form {
+            display: grid;
+            grid-area: label;
+            grid-template-areas: "title title title title title title title title title title title" ". . . . . . . . . . .";
+            height: 40%;
+            
+            & > .subtitle {
+                grid-area: title;
+            }
+            
+            & > .input-text {
+                grid-area: span 1 / span 9;
+            }
+
+            & > .button {
+                border: 2px solid var(--accent);
+
+                &:hover {
+                    background-color: var(--accent);
+                    border: 2px solid var(--secondary);
+
+                    > .text {
+                        color: var(--primary);
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    /*                                                                SOCIALS                                                               */
+    /*                                                                for div                                                               */
+        & > .socials {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            & > .link {
+                display: grid;
+                grid-template-areas:    "image title title title title title title title title title title"
+                                        "content content content content content content content content content content content";
+
+                & > .photo {
+                    grid-area: image;
+                }
+
+                & > .subtitle {
+                    grid-area: title;
+                    justify-self: left;
+                    padding-left: 5%;
+                }
+
+                & > .text {
+                    grid-area: content;
+                }
+            }
+        }
     }
 }
 /*                                                              LINKEDIN BADGE                                                              */
