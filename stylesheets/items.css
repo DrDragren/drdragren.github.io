@@ -1,7 +1,13 @@
 /* ================================================================= ITEMS ================================================================ */
 /*                                                                  LINKS                                                                   */
 /*                                                                  for a                                                                   */
+/*  
+    Changes the colors and contents of the link contents based on the theme when interacted with
+    Creates a disabled option
+*/
 .link {
+    font-size: 1em !important;
+
     &:hover {
         color: var(--accent);
         
@@ -36,25 +42,39 @@
 }
 /*                                                                  IMAGES                                                                  */
 /*                                                                  for img                                                                 */
+/*  
+    Sets the standard height and width of an image
+*/
 .photo {
     height: auto;
     max-width: 100%;
 }
 /*                                                                  TABLES                                                                  */
 /*                                                                 for table                                                                */
+/*  
+    Sets the alignment of the table's contents
+*/
 .table {
     text-align: justify;
 }
 /*                                                            NUMBERS AND BULLETS                                                           */
-/*                                                               for ol and ul                                                              */
+/*  
+    Sets the alignment of the list's contents
+*/
+/*                                                             for ordered list                                                             */
 .ordered {
     text-align: justify;
 }
+/*                                                            for unordered list                                                            */
 .unordered {
     text-align: justify;
 }
 /*                                                                  BUTTONS                                                                 */
 /*                                                                for button                                                                */
+/*  
+    Removes the standard design for the button in order to use images instead
+    Changes the opacity when clicked to make it responsive
+*/
 .button {
     border: none;
     background-color: transparent;
@@ -66,38 +86,64 @@
     }
 }
 /*                                                                   INPUT                                                                  */
-/*                                                   for input-checkbox, input-text label                                                   */
-.checkbox {
-    display: none;
-
-    & + .label {
+/*  
+    Input should always be inside its label
+*/
+/*                                                            for input-checkbox                                                            */
+/*  
+    Sets the design of the checkbox in accordance to the theme
+    Removes the appearance of the checkbox and returns it when it is checked
+    Added transition animation when the check mark appears or disappears
+    The checkbox is also responsive to hovering and clicking
+*/
+.label {
+    & > .checkbox {
         aspect-ratio: 1 / 1;
-        background-image: url(../images/bright.svg);
+        background-image: url(../images/square.svg);
         background-repeat: no-repeat;
         background-size: contain;
+        position: absolute;
         width: 1.5rem;
-        
-        &:active {
-            opacity: 50%;
+        appearance: none;
+
+        /*                                                            check image                                                           */
+        &::before {
+            background-image: url(../images/check-square-fill.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            content: "";
+            height: 70%;
+            left: 15%;
+            opacity: 0;
+            position: absolute;
+            top: 15%;
+            transition: opacity 0.5s ease-in-out;
+            width: 70%;
         }
 
-        &:hover {
-            /* ACCENT [TOMATO] */
-            filter: invert(52%) sepia(34%) saturate(4952%) hue-rotate(333deg) brightness(105%) contrast(101%);
+        &:checked::before {
+            opacity: 1;
         }
     }
 
-    &:checked + .label {
-        background-image: url(../images/dark.svg);
-        /* SECONDARY [WHITE] */
-        filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);
+    /*                                                             when hovered                                                             */
+    &:hover {
+        opacity: 80%;
+    }
 
-        &:hover {
-            /* ACCENT [ORANGEY RED] */
-            filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%);
-        }
+    /*                                                             when clicked                                                             */
+    &:active {
+        opacity: 50%;
     }
 }
+/*                                                           for input-text label                                                           */
+/*  
+    Sets the design of the text type input in accordance to the theme
+*/
 .input-text {
     background-color: var(--accent);
+
+    &::placeholder {
+        color: var(--secondary);
+    }
 }

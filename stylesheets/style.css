@@ -4,14 +4,19 @@
 class               |   element
 .article            |   article
 .badge-base         |   div (LinkedIn)
+.brand              |   div
 .button             |   button
 .checkbox           |   input checkbox
 .container          |   div
 .disabled           |   a
 .down               |   section (any)
+.filter-a           |   img / label
+.filter-s           |   img / label
 .fixed              |   article
 .footer             |   div
+.form               |   div
 .header             |   h1
+.input-text         |   input text
 .label              |   label
 .lcontent           |   section
 .left               |   section (any)
@@ -20,18 +25,21 @@ class               |   element
 .main               |   body
 .menu               |   div
 .navigation         |   div
+.newsletter         |   div
 .no-pad             |   section
 .ordered            |   ol
 .photo              |   img
+.quick-links        |   div
 .rcontent           |   section
 .right              |   section (any)
 .section            |   section
 .slider             |   article
-.socials            |   section
+.socials            |   div
 .sub                |   p
 .subtitle           |   h3
 .table              |   table
 .text               |   p
+.theme              |   label for input checkbox
 .title              |   h2
 .top                |   section (any)
 .twocol             |   article
@@ -39,11 +47,25 @@ class               |   element
 
 id                  |   element
 #brand              |   a
-#menu               |   button
+#menu               |   input checkbox
+#nav                |   input checkbox
+#theme              |   input checkbox
 
 */
 /* ================================================================ THEMES ================================================================ */
+/*
+    The list of variables for colors used in the website
+    They are categorized as:
+        accent - used only on 10% of the website, used to highlight important elements
+        primary - used 60% of the time, used as a majority for the background color
+        secondary = used 30% of the time in order to contrast the primary color, mainly as text and image colors
+        shades - Used on special occassions to complement the primary or secondary color, it has three versions
+*/
 /*                                                                  BRIGHT                                                                  */
+/*
+    These are the list of colors with their respective variable names under the bright theme
+    All labels automatically filters images and labels into a set color, either the accent or the secondary color
+*/
 :root {
     /* clickable or highlights, 10% */
     --accent: rgba(254, 101, 79, 1);            /* TOMATO */
@@ -56,8 +78,36 @@ id                  |   element
     --shade-dark: rgba(30, 30, 36, 1);          /*  */
     /* gradient background color */
     --shade-one: rgba(178, 178, 178, 0.1);      /*  */
+
+    /*                                                              SVG IMAGES                                                              */
+    & .photo {
+        /*                                                   filters with secondary color                                                   */
+        &.filter-s {
+            filter: brightness(0%);     /* SECONDARY [BLACK] */
+        }
+        /*                                                     filters with accent color                                                    */
+        &.filter-a {
+            filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%);  /* ACCENT [ORANGEY RED] */
+        }
+    }
+
+    /*                                                                LABELS                                                                */
+    & .label {
+        /*                                                   filters with secondary color                                                   */
+        &.filter-s {
+            filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(0%) contrast(105%);     /* SECONDARY [BLACK] */
+        }
+        /*                                                     filters with accent color                                                    */
+        &.filter-a {
+            filter: invert(52%) sepia(34%) saturate(4952%) hue-rotate(333deg) brightness(105%) contrast(101%);  /* ACCENT [TOMATO] */
+        }
+    }
 }
 /*                                                                   DARK                                                                   */
+/*
+    These are the list of colors with their respective variable names under the bright theme
+    All labels automatically filters black images into the orangey red (dark accent)
+*/
 :root:has(#theme:checked) {
     /* clickable or highlights, 10% */
     --accent: rgba(255, 64, 35, 1);             /* ORANGEY RED */
@@ -71,12 +121,35 @@ id                  |   element
     /* gradient background color */
     --shade-one: rgba(178, 178, 178, 0.05);     /*  */
 
-    & .photo.svg {
-        /* SVG IMAGES */
-        filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);     /* WHITE */
+    /*                                                              SVG IMAGES                                                              */
+    & .photo {
+        /*                                                   filters with secondary color                                                   */
+        &.filter-s {
+            filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);     /* SECONDARY [WHITE] */
+        }
+        /*                                                     filters with accent color                                                    */
+        &.filter-a {
+            filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%);  /* ACCENT [ORANGEY RED] */
+        }
+    }
+
+    /*                                                                LABELS                                                                */
+    & .label {
+        /*                                                   filters with secondary color                                                   */
+        &.filter-s {
+            filter: invert(96%) sepia(0%) saturate(15%) hue-rotate(279deg) brightness(103%) contrast(105%);     /* SECONDARY [WHITE] */
+        }
+        /*                                                     filters with accent color                                                    */
+        &.filter-a {
+            filter: invert(40%) sepia(63%) saturate(5412%) hue-rotate(346deg) brightness(112%) contrast(110%);  /* ACCENT [ORANGEY RED] */
+        }
     }
 }
 /*                                                                   FONT                                                                   */
+/*
+    The standard font style and color of all texts
+    It uses the Courier New style and the secondary color
+*/
 @font-face {
     color: var(--secondary);
     font-family: 'Courier New';
@@ -89,8 +162,12 @@ id                  |   element
     text-decoration: none;
 }
 /*                                                                BACKGROUND                                                                */
+/*
+    This design creates an infinite tiling of hexes using the primary and its shade as its colors
+*/
 .main {
     background-color: var(--primary);
+    /* INFINITE HEXES */
     background-image: conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg);
     background-position: 0 0, 2.5rem 4.25rem, 0 0, 2.5rem 4.25rem, 2.5rem 0, 0 4.25rem;
     background-size: 5rem 8.5rem;
@@ -99,6 +176,9 @@ id                  |   element
 /* =============================================================== ALIGNMENT ============================================================== */
 /*                                                                  GENERIC                                                                 */
 /*                                                                  for any                                                                 */
+/*
+    Aligns the element on the side that it mentions
+*/
 .left {
     justify-self: left !important;
 }

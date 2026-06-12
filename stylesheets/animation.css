@@ -1,6 +1,9 @@
 /* ============================================================== ANIMATION ============================================================== */
 /*                                                                 CHAOTIC                                                                 */
 /*                                                               for h1, span                                                              */
+/*
+    These are the animations used by the header in the main page
+*/
 .animation {
     justify-self: center;
     width: fit-content;
@@ -133,6 +136,9 @@
 }
 /*                                                                KEYFRAMES                                                                */
 /*                                                              for @keyframes                                                             */
+/*
+    These are the keyframe animations used by the header in the main page
+*/
 @keyframes flip {
     0% {transform: rotateZ(0deg);}
     100% {transform: rotateZ(180deg);}

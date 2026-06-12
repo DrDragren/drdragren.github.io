@@ -1,6 +1,10 @@
 /* ============================================================== CONTAINERS ============================================================== */
 /*                                                              PAGE CONTAINER                                                              */
-/*                                                    for body, div.menu, article, footer                                                   */
+/*                                                                 for body                                                                 */
+/*
+    Create a grid template for the body separated into the header (menu bar), articles (article), and a footer (footer)
+    Create a grid template for the menu bar that is permanently placed on top
+*/
 .main {
     display: grid;
     grid-template-areas:
@@ -11,6 +15,7 @@
     overflow-x: clip;
     overflow-y: visible;
     
+    /*                                                          for div (menu bar)                                                          */
     & > .menu {
         align-items: center;
         background-color: var(--primary);
@@ -26,54 +31,105 @@
         z-index: 999;
     }
 
+    /*                                                              for article                                                             */
     & .article {
         display: grid;
         grid-area: "article";
     }
 
+    /*                                                           for div (footer)                                                           */
     & > .footer {
         grid-area: "footer";
     }
 }
 /*                                                              SUB CONTAINERS                                                              */
-/*                                                             for div, section                                                             */
+/*
+    Sets the native measurements of the sub containers
+    Added an option to remove their padding
+*/
+/*                                                                  for div                                                                 */
 .container {
     gap: 1rem;
+    
+    /*                                                            remove padding                                                            */
+    &.no-pad {
+        padding: 0;
+    }
 }
+/*                                                                for section                                                               */
 .section {
     gap: 1rem;
     padding: 3%;
 
+    /*                                                            remove padding                                                            */
     &.no-pad {
         padding: 0;
     }
 }
 /*                                                                 MENU BAR                                                                 */
-/*                                     for a#brand, div.navigation, input checkbox + label, button#menu                                     */
-.menu > a#brand {
-    grid-area: span 1 / span 2;
-}
-.menu > .navigation {
-    display: flex;
-    grid-area: span 1 / span 5;
-    justify-content: space-between;
-    width: 100%;
-}
-.checkbox + .label {
-    grid-area: span 1 / span 1;
-    justify-self: end;
-}
-.menu > #menu {
+/*                                                                  for div                                                                 */
+/*
+    Creates a grid template for the menu bar
+    Creates a grid template for the navigation links
+    Adds borders in between each navigation link
+    Created the theme button which changes its image and the website's theme when clicked
+    The theme button is reactive when the cursor hovers over it or when it is clicked
+    Removes the menu button that appears when the screen size changes (reactive.css)
+*/
+.menu {
+
+    /*                                                           for link (brand)                                                           */
+    & > #brand {
+        grid-area: span 1 / span 2;
+    }
+
+    /*                                                         for div (navigation)                                                         */
+    & > .navigation {
+        display: flex;
+        grid-area: span 1 / span 5;
+        justify-content: space-between;
+        width: 100%;
+
+        /*                                                            add borders                                                           */
+        & > .link:not(:first-child) {
+            border-left: 1px solid var(--shade-dark);
+            padding: 0% 0% 0% 6%;
+        }
+    }
+
+    /*                                                      for input checkbox (theme)                                                      */
+    & > .theme {
+        aspect-ratio: 1 / 1;
+        background-repeat: no-repeat;
+        background-size: contain;
+        grid-area: span 1 / span 1;
+        justify-self: end;
+        width: 1.5rem;
+        
+        & > .checkbox {
+            display: none;
+        }
+        /*                                                          when unchecked                                                          */
+        &:has(.checkbox:not(:checked)) {
+            background-image: url(../images/bright.svg);
+        }
+
+        /*                                                           when checked                                                           */
+        &:has(.checkbox:checked) {
+            background-image: url(../images/dark.svg);
+        }
+    }
+
+    /*                                                       for input checkbox (menu)                                                      */
+    & > .menu {
         display: none;
     }
-/*                                                              NAVIGATION BAR                                                              */
-/*                                                            for .navigation > a                                                           */
-.menu > .navigation > .link:not(:first-child) {
-    border-left: 1px solid var(--shade-dark);
-    padding: 0% 0% 0% 6%;
 }
 /*                                                        TWO COLUMN ARTICLE CONTENTS                                                       */
-/*                                                          for article, h1, section                                                        */
+/*                                                           for article (twocol)                                                           */
+/*  
+    Creates a grid template for an article designed to be separated into two columns
+*/
 .twocol {
     align-items: center;
     grid-template-areas:
@@ -83,25 +139,36 @@
     justify-items: center;
     width: 100%;
 
+    /*                                                            for h1 (header)                                                           */
     & > .header {
         grid-area: title;
     }
 
+    /*                                                          for section (left)                                                          */
     & > .lcontent {
         grid-area: lcontent;
     }
 
+    /*                                                          for section (right)                                                         */
     & > .rcontent {
         grid-area: rcontent;
     }
 }
 /*                                                                  FOOTER                                                                  */
 /*                                                                  for div                                                                 */
+/*
+    Creates a grid template for the footer
+    Aligns all elements accordingly, with a centered title, added padding for all containers and added borders between each container
+    Centers the contents of the brand container
+    Creates a grid template for each container
+    Made a custom design for the button
+    Creates a grid template for the socials container in the newsletter
+*/
 .footer {
     background-color: var(--primary);
     border-top: 2px solid var(--accent);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 
     & .subtitle {
         justify-self: center;
@@ -112,17 +179,10 @@
         height: 100%;
         padding: 0% 5%;
 
-        &:not(:first-child) {
+        &:not(:nth-child(4n-3)) {
             position: relative;
             
             &::before {
-                content: "";
-                position: absolute;
-                /* top: 15%;
-                height: 85%; */
-                top: 5%;
-                height: 90%;
-                width: 1px;
                 background: linear-gradient(
                     to bottom,
                     transparent 0%,
@@ -130,36 +190,43 @@
                     var(--accent) 80%,
                     transparent 100%
                 );
+                content: "";
+                height: 90%;
+                position: absolute;
+                top: 5%;
+                width: 1px;
             }
-            /* border-left: 2px solid var(--accent);
-            top: 10%;
-            bottom: 10%; */
         }
     }
+
     /*                                                                 BRAND                                                                */
     /*                                                                for div                                                               */
     & > .brand {
+        align-content: center;
         display: grid;
         grid-template-columns: 1fr;
         justify-content: center;
-        align-content: center;
 
         & .container {
             text-align: center;
         }
     }
+
     /*                                                       NAVIGATE AND QUICK LINKS                                                       */
     /*                                                                for div                                                               */
     & > .navigation, .quick-links {
         display: grid;
         grid-template-columns: 1fr;
     }
+
     /*                                                                SOCIALS                                                               */
     /*                                                                for div                                                               */
     & > .socials {
         display: grid;
+        grid-area: span 2 / span 1;
         grid-template-columns: 1fr;
     }
+    
     /*                                                              NEWSLETTER                                                              */
     /*                                                                for div                                                               */
     & > .newsletter {
@@ -225,6 +292,10 @@
 }
 /*                                                              LINKEDIN BADGE                                                              */
 /*                                                                  for div                                                                 */
+/*  
+    Aligns the badge
+    Hides the smaller one
+*/
 .linked-in-large {
     justify-self: center;
 }
@@ -234,6 +305,9 @@
 }
 /*                                                               SOCIAL MEDIA                                                               */
 /*                                                            for div, link, img                                                            */
+/*  
+    Creates a template for all the socials container
+*/
 .socials {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;

@@ -3,18 +3,49 @@
 /* scaling animations */
 /*                                                                 DESKTOPS                                                                 */
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
+
+    /* ---------------------------------------------------------- CONTAINERS.CSS ---------------------------------------------------------- */
+    /*                                                                FOOTER                                                                */
+    /*                                                                for div                                                               */
+    /*
+        Rearranges the grid arrangement
+    */
+    .footer {
+        grid-template-areas:    "brand nav socials"
+                                "brand links socials"
+                                "letter letter letter";
+        grid-template-columns: 1fr 1fr 1fr;
+        /*                                                               BRAND                                                              */
+        /*                                                              for div                                                             */
+        & > .brand {
+            grid-area: brand;
+        }
+        /*                                                              SOCIALS                                                             */
+        /*                                                              for div                                                             */
+        & > .socials {
+            grid-area: socials;
+        }
+        /*                                                            NEWSLETTER                                                            */
+        /*                                                              for div                                                             */
+        & > .newsletter {
+            grid-area: span 1 / span 3;
+        }
+    }
 
 }
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+@media (max-width: 992px) {
 
 }
 /*                                                                  TABLETS                                                                 */
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width:991px) {
 
-    /* =============================================================== TEXT =============================================================== */
+    /* ------------------------------------------------------------- TEXT.CSS ------------------------------------------------------------- */
+    /*
+        Resizes the font sizes when the screen gets smaller
+    */
     /*                                                                HEADER                                                                */
     /*                                                                for h1                                                                */
     .header {
@@ -40,56 +71,71 @@
     &.sub {
         font-size: 0.7rem;
     }
+
+    /* ---------------------------------------------------------- CONTAINERS.CSS ---------------------------------------------------------- */
     /*                                                        SLIDER ARTICLE CONTENTS                                                       */
     /*                                                         for article, section                                                         */
+    /*
+        Makes the slider article compress into a slider (containers.css)
+        Horizontally aligns the grid and hides the overflow
+        Specifies the snap scrolling mechanism at the start of each article
+        Designs the button to be responsive when clicked or when it becomes unclickable 
+    */
     .fixed {
         grid-template-areas: "buttonl content buttonr";
+        
+        & > .slider {
+            grid-auto-flow: column;
+            grid-auto-columns: 100%;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+
+            /*                                                  snap scrolling at the start                                                 */
+            & .article {
+                scroll-snap-align: start;
+            }
+
+            &::scroll-button(right) {
+                content: ">";
+                grid-area: buttonr;
+            }
+
+            &::scroll-button(left) {
+                content: "<";
+                grid-area: buttonl;
+            }
+
+            /*                                                        button designs                                                        */
+            &::scroll-button(right), &::scroll-button(left) {
+                background: 0%;
+                border: none;
+                color: var(--secondary);
+                cursor: pointer;
+                font-size: 10rem;
+            }
+
+            &::scroll-button(right):disabled, &::scroll-button(left):disabled {
+                color: var(--shade-light);
+                cursor: default;
+            }
+
+            &::scroll-button(right):enabled:active, &::scroll-button(left):enabled:active {
+                color: var(--accent);
+                cursor: default;
+            }
+        }
     }
-    .slider {
-        grid-auto-flow: column;
-        grid-auto-columns: 100%;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-
-        & .twocol {
-            scroll-snap-align: start;
-        }
-
-        &::scroll-button(right) {
-            content: ">";
-            grid-area: buttonr;
-        }
-
-        &::scroll-button(left) {
-            content: "<";
-            grid-area: buttonl;
-        }
-
-        &::scroll-button(right), &::scroll-button(left) {
-            background: 0%;
-            border: none;
-            color: var(--secondary);
-            cursor: pointer;
-            font-size: 10rem;
-        }
-
-        &::scroll-button(right):disabled, &::scroll-button(left):disabled {
-            color: var(--shade-light);
-            cursor: default;
-        }
-
-        &::scroll-button(right):enabled:active, &::scroll-button(left):enabled:active {
-            color: var(--accent);
-            cursor: default;
-        }
-    }
-
+    /*                                                            LINKEDIN BADGE                                                            */
+    /*                                                                for div                                                               */
+    /*  
+        Swaps the display value between the large and small badges, hiding the large one
+    */
     .linked-in-large {
         display: none;
     }
     .linked-in-small {
-        display: inherit;
+        display: initial;
     }
 
 }
@@ -97,14 +143,55 @@
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 0px) and (max-width: 767px) {
     
-    /* ============================================================ CONTAINERS ============================================================ */
+    /* ---------------------------------------------------------- CONTAINERS.CSS ---------------------------------------------------------- */
     /*                                                            PAGE CONTAINER                                                            */
-    /*                                                             for div.menu                                                             */
+    /*                                                          for div (menu bar)                                                          */
+    /*
+        Realigns the grid template for the menu bar in the body
+        Create a grid template for the menu bar that is permanently placed on top
+    */
     .main > .menu {
         grid-template-columns: 1fr 1fr 1fr auto auto;
     }
+    /*                                                               MENU BAR                                                               */
+    /*                                                                for div                                                               */
+    /*
+        Resizes the brand to take up more space horizontally
+        Hides the navigation from view
+        Makes the menu button appear
+    */
+    .menu {
+        /*                                                         for link (brand)                                                         */
+        & > #brand {
+            grid-area: span 1 / span 3;
+        }
+
+        /*                                                       for div (navigation)                                                       */
+        & > .navigation {
+            display: none;
+        }
+
+        /*                                                     for input checkbox (menu)                                                    */
+        & > .menu {
+            aspect-ratio: 1 / 1;
+            background-image: url(../images/list.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: inline-block;
+            grid-area: span 1 / span 1;
+            justify-self: end;
+            width: 1.5rem;
+
+            & > .checkbox {
+                display: none;
+            }
+        }
+    }
     /*                                                      TWO COLUMN ARTICLE CONTENTS                                                     */
-    /*                                                              for article                                                             */
+    /*                                                         for article (twocol)                                                         */
+    /*  
+        Realigns the grid template for the two column article
+    */
     .twocol {
         display: grid;
         grid-area: "article";
@@ -114,77 +201,139 @@
             "rcontent";
         grid-template-columns: 1fr;
     }
-    /*                                                               MENU BAR                                                               */
-    /*                                           for a#brand, input checkbox + label, button#menu                                           */
-    .menu > a#brand {
-        grid-area: span 1 / span 3;
-    }
-    .menu > .navigation {
-        display: none;
-    }
-    .menu > #menu {
-        display: inline-block;
-        grid-area: span 1 / span 1;
-        justify-self: end;
-
-        & > svg {
-            max-width: 2rem;
-        }
-    }
     /*                                                        SLIDER ARTICLE CONTENTS                                                       */
-    /*                                                         for article, section                                                         */
+    /*                                                              for article                                                             */
+    /*
+        Makes the slider article compress into a slider (containers.css)
+        Horizontally aligns the grid and hides the overflow
+        Specifies the snap scrolling mechanism at the start of each article
+        Designs the button to be responsive when clicked or when it becomes unclickable
+        The font-sizes are resized to be smaller
+    */
     .fixed {
         grid-template-areas: "buttonl content buttonr";
-    }
-    .slider {
-        grid-auto-flow: column;
-        grid-auto-columns: 100%;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
+        
+        & > .slider {
+            grid-auto-flow: column;
+            grid-auto-columns: 100%;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
 
-        & .twocol {
-            scroll-snap-align: start;
-        }
+            /*                                                  snap scrolling at the start                                                 */
+            & .article {
+                scroll-snap-align: start;
+            }
 
-        &::scroll-button(right) {
-            content: ">";
-            grid-area: buttonr;
-        }
-        &::scroll-button(left) {
-            content: "<";
-            grid-area: buttonl;
-        }
-        &::scroll-button(right), &::scroll-button(left) {
-            background: 0%;
-            border: none;
-            color: var(--secondary);
-            cursor: pointer;
-            font-size: 5rem;
-        }
-        &::scroll-button(right):disabled, &::scroll-button(left):disabled {
-            color: var(--shade-light);
-            cursor: default;
-        }
-        &::scroll-button(right):enabled:active, &::scroll-button(left):enabled:active {
-            color: var(--accent);
-            cursor: default;
+            &::scroll-button(right) {
+                content: ">";
+                grid-area: buttonr;
+            }
+
+            &::scroll-button(left) {
+                content: "<";
+                grid-area: buttonl;
+            }
+
+            /*                                                        button designs                                                        */
+            &::scroll-button(right), &::scroll-button(left) {
+                background: 0%;
+                border: none;
+                color: var(--secondary);
+                cursor: pointer;
+                font-size: 5rem;
+            }
+
+            &::scroll-button(right):disabled, &::scroll-button(left):disabled {
+                color: var(--shade-light);
+                cursor: default;
+            }
+
+            &::scroll-button(right):enabled:active, &::scroll-button(left):enabled:active {
+                color: var(--accent);
+                cursor: default;
+            }
         }
     }
     /*                                                            LINKEDIN BADGE                                                            */
     /*                                                                for div                                                               */
+    /*  
+        Swaps the display value between the large and small badges, hiding the large one
+    */
     .linked-in-large {
         display: none;
     }
     .linked-in-small {
         display: initial;
     }
+    /*                                                                FOOTER                                                                */
+    /*                                                                for div                                                               */
+    /*
+        Realigns the grid template for the footer
+        Removes the borders that became unnecessary after realigning the containers
+        Realigns the grid template for the socials and newsletter container
+    */
+    .footer {
+        grid-template-areas:    "brand brand"
+                                "nav links"
+                                "socials socials"
+                                "letter letter";
+        grid-template-columns: 1fr 1fr;
+
+        & > .container:not(:nth-child(3))::before {
+            display: none;
+        }
+
+        /*                                                               BRAND                                                              */
+        /*                                                              for div                                                             */
+        & > .brand {
+            grid-area: brand;
+        }
+
+        /*                                                             NAVIGATE                                                             */
+        /*                                                              for div                                                             */
+        & > .navigation {
+            grid-area: nav;
+        }
+
+        /*                                                            QUICK LINKS                                                           */
+        /*                                                              for div                                                             */
+        & > .quick-links {
+            grid-area: links;
+        }
+
+        /*                                                              SOCIALS                                                             */
+        /*                                                              for div                                                             */
+        & > .socials {
+            grid-area: socials;
+            grid-template-areas:    "title title";
+            grid-template-columns: 1fr 1fr;
+
+            & > .subtitle {
+                grid-area: title;
+            }
+        }
+
+        /*                                                            NEWSLETTER                                                            */
+        /*                                                              for div                                                             */
+        & > .newsletter {
+            grid-area: letter;
+
+            & > .socials {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+
 }
 /*  Extra small devices (portrait phones, less than 576px)
     No media query since this is the default in Bootstrap */
 @media (min-width: 0px) and (max-width: 576px) {
 
-    /* =============================================================== TEXT =============================================================== */
+    /* ------------------------------------------------------------- TEXT.CSS ------------------------------------------------------------- */
+    /*
+        Resizes the font sizes when the screen gets smaller
+    */
     /*                                                                HEADER                                                                */
     /*                                                                for h1                                                                */
     .header {
@@ -211,16 +360,42 @@
         }
     }
     /*                                                        SLIDER ARTICLE CONTENTS                                                       */
-    /*                                                         for article, section                                                         */
-    .slider::scroll-button(right), .slider::scroll-button(left) {
+    /*                                                              for article                                                             */
+    /*
+        Makes the button size smaller
+    */
+    .fixed > .slider::scroll-button(right), .slider::scroll-button(left) {
             font-size: 3rem ;
     }
-    /*                                                            LINKEDIN BADGE                                                            */
+    /*                                                                FOOTER                                                                */
     /*                                                                for div                                                               */
-    .linked-in-large {
-        display: none;
+    /*
+        Realigns the grid template for the newsletter
+    */
+    .footer {
+        /*                                                            NEWSLETTER                                                            */
+        /*                                                              for div                                                             */
+        & > .newsletter {
+            grid-area: letter;
+
+            & > .form {
+                grid-template-areas: "title" "input" "button";
+                grid-template-columns: 1fr;
+
+                & > .input-text {
+                    grid-area: span 1 / span 1;
+                }
+
+                & > .button {
+                    justify-items: center;
+                }
+            }
+
+            & > .socials {
+                grid-template-columns: 1fr 1fr;
+                white-space: nowrap;
+            }
+        }
     }
-    .linked-in-small {
-        display: initial;
-    }
+
 }
