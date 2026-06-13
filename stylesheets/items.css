@@ -3,7 +3,6 @@
 /*                                                                  for a                                                                   */
 /*  
     Changes the colors and contents of the link contents based on the theme when interacted with
-    Creates a disabled option
 */
 .link {
     font-size: 1em !important;
@@ -33,11 +32,6 @@
 
     &:active {
         filter: brightness(50%);     /* WHITE */
-    }
-
-    &.disabled {
-        cursor: default;
-        pointer-events: none;
     }
 }
 /*                                                                  IMAGES                                                                  */

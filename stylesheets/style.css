@@ -8,7 +8,7 @@ class               |   element
 .button             |   button
 .checkbox           |   input checkbox
 .container          |   div
-.disabled           |   a
+.disabled           |   clickable element
 .down               |   section (any)
 .filter-a           |   img / label
 .filter-s           |   img / label
@@ -27,12 +27,14 @@ class               |   element
 .navigation         |   div
 .newsletter         |   div
 .no-pad             |   section
+.no-text            |   any.selected
 .ordered            |   ol
 .photo              |   img
 .quick-links        |   div
 .rcontent           |   section
 .right              |   section (any)
 .section            |   section
+.selected           |   text
 .slider             |   article
 .socials            |   div
 .sub                |   p
@@ -190,4 +192,33 @@ id                  |   element
 }
 .down {
     align-self: end !important;
+}
+/* =============================================================== HIGHLIGHT ============================================================== */
+/*                                                                  GENERIC                                                                 */
+/*                                                               for any text                                                               */
+/*
+    Highlights the text element by changing it to an accent color
+    Also adds a selector text that covers the text element if it does not have the no-text class
+*/
+.selected {
+    color: var(--accent);
+
+    &:not(.no-text) {
+        &::before {
+            content: "> ";
+        }
+
+        &::after {
+            content: " <";
+        }
+    }
+}
+/*                                                                 CLICKABLE                                                                */
+/*                                                         for any clickable element                                                        */
+/*
+    Creates a disabled option for the element
+*/
+.disabled {
+    cursor: default;
+    pointer-events: none;
 }
