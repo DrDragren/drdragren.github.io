@@ -66,6 +66,7 @@ id                  |   element
 /*                                                                  BRIGHT                                                                  */
 /*
     These are the list of colors with their respective variable names under the bright theme
+    Maximizes the height of the screen it is on
     All labels automatically filters images and labels into a set color, either the accent or the secondary color
 */
 :root {
@@ -80,6 +81,8 @@ id                  |   element
     --shade-dark: rgba(30, 30, 36, 1);          /*  */
     /* gradient background color */
     --shade-one: rgba(178, 178, 178, 0.1);      /*  */
+
+    height: 100%;
 
     /*                                                              SVG IMAGES                                                              */
     & .photo {
@@ -173,6 +176,7 @@ id                  |   element
     background-image: conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 60deg at 56.25% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from 180deg at 43.75% calc(425% / 6), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg), conic-gradient(from -60deg at 50% calc(175% / 12), transparent 0deg, transparent 0.5deg, var(--shade-one) 0.5deg, var(--shade-one) 119.5deg, transparent 119.5deg, transparent 120deg);
     background-position: 0 0, 2.5rem 4.25rem, 0 0, 2.5rem 4.25rem, 2.5rem 0, 0 4.25rem;
     background-size: 5rem 8.5rem;
+    min-height: 100%;
     opacity: 0.8;
 }
 /* =============================================================== ALIGNMENT ============================================================== */
