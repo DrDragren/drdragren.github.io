@@ -230,7 +230,7 @@
     /*
         Makes the slider article compress into a slider (containers.css)
         Horizontally aligns the grid and hides the overflow
-        Specifies the snap scrolling mechanism at the start of each article
+        Specifies the snap scrolling mechanism at the start of each article with a smooth transition
         Designs the button to be responsive when clicked or when it becomes unclickable
         The font-sizes are resized to be smaller
     */
@@ -243,6 +243,7 @@
             overflow-x: scroll;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
+            scroll-behavior: smooth;
 
             /*                                                  snap scrolling at the start                                                 */
             & .article {
